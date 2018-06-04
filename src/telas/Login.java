@@ -4,9 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -15,7 +12,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-
+import dados.Auxiliares;
 import dados.Usuario;
 import net.miginfocom.swing.MigLayout;
 
@@ -23,28 +20,30 @@ import net.miginfocom.swing.MigLayout;
 public class Login extends JDialog {
 
   private static final JPanel contentPanel = new JPanel();
+  private static Login tela;
   private static JTextField txtNome;
   private static JPasswordField txtSenha;
   private static Usuario usuarioLogado = null;
+  private static boolean telaCriada = false;
 
-  /**
-   * Launch the application.
-   */
   public static Usuario logar() {
     usuarioLogado = null;
     try {
-      Login tela = new Login();
-      tela.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+      if (!telaCriada) {
+        tela = new Login();
+        tela.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+      }
+      limparCampos();
       tela.setVisible(true);
     } catch (Exception e) {
       e.printStackTrace();
     }
     return usuarioLogado;
   }
-
-  // Método para informar o fechamento da janela
-  private void eventoWindowClose() {
-    dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+  
+  private static void limparCampos() {
+    txtNome.setText("");
+    txtSenha.setText("");
   }
 
   /**
@@ -60,37 +59,28 @@ public class Login extends JDialog {
         String nome = txtNome.getText();
         String senha = String.valueOf(txtSenha.getPassword());
         if (nome.equals("") || senha.equals("")) {
-          System.out.println("Usuário ou senha não preenchidos");
+          Auxiliares.mensagemErro("Usuário ou senha não preenchidos");
         } else {
           if (Usuario.existeUsuario(nome)) {
-            System.out.println(nome + " existe");
             Usuario usuario = Usuario.getUsuario(nome);
             if (senha.equals(usuario.getSenha())) {
               usuario.definirComoAtivo();
-              eventoWindowClose();
+              Auxiliares.mensagemOK("Bem vindo!" + usuario.getNome());
+              Auxiliares.dispararEventoFecharJanela(Login.this);
             }
           }
-          System.out.println("Usuário ou senha incorretos");
+          Auxiliares.mensagemErro("Usuário ou senha incorretos");
           txtNome.setText("");
           txtSenha.setText("");
         }
       }
     };
     // Classe anônima para ação de cancelar
-    ActionListener acaoCancelar = new ActionListener() {
-
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        eventoWindowClose();
-      }
-    };
-    addWindowListener(new WindowAdapter() {
-      @Override
-      public void windowClosed(WindowEvent arg0) {
-      }
-    });
+    ActionListener acaoCancelar = Auxiliares.getAcaoFecharJanela(this);
+    // Classe anônima para ocultar a janela
+    addWindowListener(Auxiliares.getListenerOcultarJanela(this));
+    setModalityType(ModalityType.APPLICATION_MODAL);
     setTitle("Login");
-    setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
     setBounds(100, 100, 184, 184);
     getContentPane().setLayout(new BorderLayout());
     contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -130,6 +120,7 @@ public class Login extends JDialog {
         JButton cancelButton = new JButton("Cancel");
         cancelButton.addActionListener(acaoCancelar);
       }
+      telaCriada = true;
     }
   }
 }

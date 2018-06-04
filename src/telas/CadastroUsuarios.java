@@ -1,12 +1,8 @@
 package telas;
 
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-
-import javax.swing.DefaultComboBoxModel;
+import java.awt.event.WindowListener;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
@@ -18,7 +14,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
-
+import dados.Auxiliares;
 import dados.Usuario;
 import dados.Usuario.NiveisUsuarios;
 
@@ -27,187 +23,156 @@ public class CadastroUsuarios extends JFrame {
 
   private static CadastroUsuarios frame;
   private static boolean telaCarregada = false;
-  private JPanel contentPane;
-  private JTextField txtNome;
-  private JLabel lblNewLabel;
-  private JPasswordField txtSenha;
-  private JButton btnGravar;
-  private JButton btnCancelar;
-  private JComboBox<NiveisUsuarios> cbxAcesso;
+  private static JPanel contentPane;
+  private static JTextField txtNome;
+  private static JLabel lblNewLabel;
+  private static JPasswordField txtSenha;
+  private static JButton btnGravar;
+  private static JButton btnCancelar;
+  private static JComboBox<NiveisUsuarios> cbxAcesso;
+  private static Usuario usuarioCadastrado, usuarioEmCadastro;
+  private static String nome;
+  private static String senha;
+  private static NiveisUsuarios acesso;
 
-  public static void novoUsuario() {
-    chamarTela(new Usuario());
-  }
-
-  public static void editarUsuario(Usuario usuario) {
-    chamarTela(usuario);
-  }
-  
-  public static void chamarTela(Usuario usuario) {
-    if (!telaCarregada) {
-      EventQueue.invokeLater(new Runnable() {
-        public void run() {
-          try {
-            frame = new CadastroUsuarios();
-            frame.setVisible(true);
-          } catch (Exception e) {
-            e.printStackTrace();
-          }
-        }
-      });
-    } else {
-      frame.setVisible(true);
-      // Prenche as informações
-      frame.txtNome.setText(usuario.getNome());
-      frame.txtSenha.setText(usuario.getSenha());
-      frame.cbxAcesso.setSelectedItem(Usuario.getNivelIndex(usuario.getNivel()));
-    }
-  }
-
-  // Checagem dos inputs nos campos do formulário
-  private boolean dadosOk() {
-    if (txtNome.getText().equals("")) {
-      System.out.println("Você deve digitar um nome!");
-      txtNome.requestFocusInWindow();
+  // ---Procedimentos de gravação do novo Usuário
+  // Checa inputs
+  private static boolean dadosOk() {
+    if (nome.equals("")) {
+      Auxiliares.mensagemErro("Você deve digitar o nome do usuário!");;
+      txtNome.requestFocus();
       return false;
     }
-    if (String.valueOf(txtSenha.getPassword()).equals("")) {
-      System.out.println("Você deve digitar uma senha!");
+    if (senha.equals("")) {
+      Auxiliares.mensagemErro("Você deve digitar uma senha!");
       txtSenha.requestFocus();
       return false;
     }
-    if (cbxAcesso.getSelectedItem().toString().equals(NiveisUsuarios.INDEFINIDO.toString())) {
-      System.out.println("Você deve selecionar um nível de acesso!");
+    if (acesso.equals(NiveisUsuarios.INDEFINIDO)) {
+      Auxiliares.mensagemErro("Você deve selecionar um nível de acesso!");
       cbxAcesso.requestFocus();
       return false;
     }
     return true;
   }
 
-  private void cadastrarUsuario() {
-    Usuario.cadastrar(txtNome.getText(), String.valueOf(txtSenha.getPassword()),
-            NiveisUsuarios.values()[cbxAcesso.getSelectedIndex()]);
+  // Grava os inputs nas variáveis necessárias
+  private static void lerInputs() {
+    nome = txtNome.getText();
+    senha = String.valueOf(txtSenha.getPassword());
+    acesso = NiveisUsuarios.values()[cbxAcesso.getSelectedIndex()];
   }
 
-  private void eventoFechar() {
-    dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+  // Salva os dados depois de checar se os inputs estão conformes. Argumento de ActionEvent para
+  // poder ser usado como actionListener
+  private static void salvarDados(ActionEvent e) {
+    lerInputs();
+    if (dadosOk()) {
+      usuarioEmCadastro.setNome(nome);
+      usuarioEmCadastro.setSenha(senha);
+      usuarioEmCadastro.setNivel(acesso);
+      usuarioCadastrado = Usuario.cadastrar(usuarioEmCadastro);
+      Auxiliares.dispararEventoFecharJanela(frame);
+    }
   }
 
-  private void criarTela() {
-    // Evento para fechar a janela.
-    WindowAdapter fecharJanela = new WindowAdapter() {
+  // ---Métodos de cadastro. É possível cadastrar um novo usuário ou editar um existente
+  public static Usuario cadastrar() {
+    return cadastrar(new Usuario());
+  }
 
-      @Override
-      public void windowClosing(WindowEvent e) {
-        txtNome.setText("");
-        txtSenha.setText("");
-        cbxAcesso.setSelectedIndex(0);
-        CadastroUsuarios.this.setVisible(false);
-      }
-    };
+  public static Usuario cadastrar(Usuario usuario) {
+    usuarioEmCadastro = usuario;
+    if (!telaCarregada) {
+      frame = new CadastroUsuarios();
+    }
+    // Prenche as informações
+    usuarioCadastrado = null;
+    txtNome.setText(usuario.getNome());
+    txtSenha.setText(usuario.getSenha());
+    cbxAcesso.setSelectedItem(Usuario.getNivelIndex(usuario.getNivel()));
+    frame.setVisible(true);
+    return usuarioCadastrado;
+  }
 
-    ActionListener acaoOK = new ActionListener() {
+  // Cria e configura o frame
+  private CadastroUsuarios() {
+    // ---Configuração de listeners
+    // Classe anônima para ação do botão cadastrar
+    ActionListener acaoOK = CadastroUsuarios::salvarDados;
+    // Classe anônima para ação do botão cancelar
+    ActionListener acaoCancelar = Auxiliares.getAcaoFecharJanela(this);
+    // Classe anônima para ação de ocultar janela. Esse evento é disparado pelo botão cancelar ou
+    // pelo botão de fechar janela.
+    WindowListener listenerFecharJanela = Auxiliares.getListenerOcultarJanela(this);
 
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        if (dadosOk()) {
-          cadastrarUsuario();
-          eventoFechar();
-        }
+    // ---Labels e controles
+    JLabel lblNome = new JLabel("Nome");
+    lblNewLabel = new JLabel("Senha");
+    JLabel lblAcesso = new JLabel("Acesso");
+    // Nome
+    txtNome = new JTextField();
+    txtNome.setColumns(10);
+    // Senha
+    txtSenha = new JPasswordField();
+    // Seleção do nível de acesso
+    cbxAcesso = new JComboBox<NiveisUsuarios>();
+    cbxAcesso.setModel(Auxiliares.listaComboBox(NiveisUsuarios.values()));
+    cbxAcesso.setSelectedIndex(0);
+    // Botões
+    btnGravar = new JButton("Gravar");
+    btnCancelar = new JButton("Cancelar");
 
-      }
-    };
+    // ---Listeners e validadores
+    // Listeners para os botões
+    btnCancelar.addActionListener(acaoCancelar);
+    btnGravar.addActionListener(acaoOK);
+    // Adiciona o listener para evento de fechar janela
+    addWindowListener(listenerFecharJanela);
 
-    ActionListener acaoCancelar = new ActionListener() {
-
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        eventoFechar();
-      }
-    };
-
-    addWindowListener(fecharJanela);
+    // ---Painel e layout do form
     setTitle("Cadastro de Usuários");
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    setBounds(100, 100, 269, 215);
+    setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+    setBounds(100, 100, 269, 236);
     contentPane = new JPanel();
     contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
     setContentPane(contentPane);
-
-    JLabel lblNome = new JLabel("Nome");
-
-    txtNome = new JTextField();
-    txtNome.setColumns(10);
-
-    lblNewLabel = new JLabel("Senha");
-
-    txtSenha = new JPasswordField();
-
-    JLabel lblAcesso = new JLabel("Acesso");
-
-    cbxAcesso = new JComboBox<>();
-    cbxAcesso.setModel(new DefaultComboBoxModel<>(NiveisUsuarios.values()));
-
-    btnGravar = new JButton("Gravar");
-    btnGravar.addActionListener(acaoOK);
-
-    btnCancelar = new JButton("Cancelar");
-    btnCancelar.addActionListener(acaoCancelar);
-
     GroupLayout gl_contentPane = new GroupLayout(contentPane);
     gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-            .addGroup(gl_contentPane.createSequentialGroup()
-                    .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                            .addGroup(gl_contentPane.createSequentialGroup()
-                                    .addGroup(gl_contentPane
-                                            .createParallelGroup(Alignment.LEADING, false)
-                                            .addComponent(lblNome)
-                                            .addComponent(txtNome))
-                                    .addGap(18)
-                                    .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                            .addComponent(txtSenha, GroupLayout.PREFERRED_SIZE, 91,
-                                                    GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblNewLabel)))
-                            .addComponent(lblAcesso)
-                            .addGroup(gl_contentPane.createSequentialGroup()
-                                    .addComponent(btnGravar)
-                                    .addGap(18)
-                                    .addComponent(btnCancelar))
-                            .addComponent(cbxAcesso, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addContainerGap()));
-    gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-            .addGroup(gl_contentPane.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-                            .addGroup(gl_contentPane.createSequentialGroup()
-                                    .addComponent(lblNome)
-                                    .addPreferredGap(ComponentPlacement.RELATED)
-                                    .addComponent(txtNome, GroupLayout.PREFERRED_SIZE,
-                                            GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                            .addGroup(gl_contentPane.createSequentialGroup()
-                                    .addComponent(lblNewLabel)
-                                    .addPreferredGap(ComponentPlacement.RELATED)
-                                    .addComponent(txtSenha, GroupLayout.PREFERRED_SIZE,
-                                            GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+        .addGroup(gl_contentPane.createSequentialGroup()
+            .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                .addGroup(gl_contentPane.createSequentialGroup()
+                    .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+                        .addComponent(lblNome).addComponent(txtNome))
                     .addGap(18)
-                    .addComponent(lblAcesso)
-                    .addPreferredGap(ComponentPlacement.RELATED)
-                    .addComponent(cbxAcesso, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+                    .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                        .addComponent(txtSenha, GroupLayout.PREFERRED_SIZE, 91,
                             GroupLayout.PREFERRED_SIZE)
-                    .addGap(23)
-                    .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                            .addComponent(btnGravar)
-                            .addComponent(btnCancelar))
-                    .addContainerGap(60, Short.MAX_VALUE)));
+                        .addComponent(lblNewLabel)))
+                .addComponent(lblAcesso)
+                .addGroup(gl_contentPane.createSequentialGroup().addComponent(btnGravar).addGap(18)
+                    .addComponent(btnCancelar))
+                .addComponent(cbxAcesso, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addContainerGap()));
+    gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+        .addGroup(gl_contentPane.createSequentialGroup().addContainerGap()
+            .addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+                .addGroup(gl_contentPane.createSequentialGroup().addComponent(lblNome)
+                    .addPreferredGap(ComponentPlacement.RELATED).addComponent(txtNome,
+                        GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+                        GroupLayout.PREFERRED_SIZE))
+                .addGroup(gl_contentPane.createSequentialGroup().addComponent(lblNewLabel)
+                    .addPreferredGap(ComponentPlacement.RELATED).addComponent(txtSenha,
+                        GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+                        GroupLayout.PREFERRED_SIZE)))
+            .addGap(18).addComponent(lblAcesso).addPreferredGap(ComponentPlacement.RELATED)
+            .addComponent(cbxAcesso, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+                GroupLayout.PREFERRED_SIZE)
+            .addGap(23).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                .addComponent(btnGravar).addComponent(btnCancelar))
+            .addContainerGap(60, Short.MAX_VALUE)));
     contentPane.setLayout(gl_contentPane);
-  }
-
-  /**
-   * Create the frame.
-   */
-  private CadastroUsuarios() {
-    // Cria a tela
-    criarTela();
+    telaCarregada = true;
   }
 
 }
