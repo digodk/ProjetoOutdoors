@@ -3,66 +3,75 @@ package Code;
 import java.util.Random;
 
 public class Anime extends Categoria {
-
+	
+	//Array de perguntas
 	private static String [] enunciados = {
 		"Qual o nome do protagonista de Cowboy Bebop?",
 		"Qual a fonte dos poderes sobrenaturais dos personagens no universo de One Piece?",
-		"Em Full Metal Alchemist, que artefato os irm„os Elric buscam para recuperarem seus corpos?",
-	    "Em Dragon Ball Z, qual personagem casou com a AndrÛide #18?",
-	    "Como È conhecido o grupo de Cavaleiros Sagrados protagonistas em Nanatsu no Taizai?",
+		"Em Full Metal Alchemist, que artefato os irm√£os Elric buscam para recuperarem seus corpos?",
+	    "Em Dragon Ball Z, qual personagem casou com a Andr√≥ide #18?",
+	    "Como √© conhecido o grupo de Cavaleiros Sagrados protagonistas em Nanatsu no Taizai?",
 	    "No anime Trigun,  qual o motto do personagem Vash? ",
-	    "Como s„o chamados os robÙs gigantes em Evangelion?",
-	    "Em Dragon Ball, Goku È de uma raÁa de alienÌgenas superpoderosa. Qual o nome dessa raÁa?",
-	    "O caderno em Death Note garante ao seu usu·rio o poder de uma entidade sobrenatural. Que entidade È est·? ",
-	    "Em Mob Psycho 100, as pessoas com poderes s„o conhecidas como?",
-	    "Em Fullmetal Alchemist, os Ouroboros s„o?",
-	    "Qual o sonho do personagem Naruto (sÈrie homÙnima)?",
-	    "Qual È o nome da terceira temporada da sÈrie Digimon?",
-	    "Na primeira temporada de Pokemon, qual È o nome da organizaÁ„o criminosa que atua na regi„o?",
-	    "Em Dragon Ball È necess·rio reunir as Esferas do Drag„o para que Shenlong apareÁa. Quantas s„o?",
+	    "Como s√£o chamados os rob√¥s gigantes em Evangelion?",
+	    "Em Dragon Ball, Goku √© de uma ra√ßa de alien√≠genas superpoderosa. Qual o nome dessa ra√ßa?",
+	    "O caderno em Death Note garante ao seu usu√°rio o poder de uma entidade sobrenatural. Que entidade √© esta? ",
+	    "Em Mob Psycho 100, as pessoas com poderes s√£o conhecidas como?",
+	    "Em Fullmetal Alchemist, os Ouroboros s√£o?",
+	    "Qual o sonho do personagem Naruto (s√©rie hom√¥nima)?",
+	    "Qual √© o nome da terceira temporada da s√©rie Digimon?",
+	    "Na primeira temporada de Pokemon, qual √© o nome da organiza√ß√£o criminosa que atua na regi√£o?",
+	    "Em Dragon Ball √© necess√°rio reunir as Esferas do Drag√£o para que Shenlong apare√ßa. Quantas s√£o?",
 	    "Em que local se passam as aventuras de One Piece?",
-	    "Em Kiseijuu (Parasyte), em que parte de do corpo de Shinichi fica o alienÌgena Migi? ",
+	    "Em Kiseijuu (Parasyte), em que parte de do corpo de Shinichi fica o alien√≠gena Migi? ",
 	    "Qual o nome do golpe assinatura do personagem All Might no anime Boku no Hero Academia?",
-	    "Como s„o chamadas as transformaÁıes do personagem Monkey D. Luffy no anime One Piece?",
+	    "Como s√£o chamadas as transforma√ß√µes do personagem Monkey D. Luffy no anime One Piece?",
 	    "Em uma luta entre Saitama de One Punch Man e Goku de Dragon Ball, quem seria o vencedor? "};
-	  
+	
+	//Array de respostas
 	private static String[][] respostas = {
 		{"Spike","Smite","Sprite","Strike"},
-		{"Akuma no Mi","Death Note","Esferas do Drag„o","Digivice"},
-		{"Pedra Filosofal","A Varinha das Varinhas","Pomo de Ouro","C·lice de Fogo"},
+		{"Akuma no Mi","Death Note","Esferas do Drag√£o","Digivice"},
+		{"Pedra Filosofal","A Varinha das Varinhas","Pomo de Ouro","C√°lice de Fogo"},
 		{"Kuririn", "Curupira", "Caipora", "Curumim"},
 		{"Os Sete Pecados Capitais","Os Dez Mandamentos","As Dez Pragas do Egito","Os Quatro Cavaleiros do Apocalipse"},
 		{"Paz e amor","Liberdade, igualdade e fraternidade","Orgulho e preconceito","Sexo, drogas e rock'n roll"},
 		{"EVAs","Jaeger","Megazord","Gundam"},
 		{"Saiyajins","Klingon","Grey","Kryptonianos"},
-		{"Shinigami","Shenlong","Digimon,Bijuu"},
+		{"Shinigami","Shenlong","Digimon","Bijuu"},
 		{"Paranormais","Cavaleiros Sagrados","Dobradores","Digi-Escolhidos"},
 		{"Homunculos","Hollow","Uchihas","Marinheiros"},
 		{"Ser o Hokage","Virar um Mestre Pokemon","Ser o Shaman King","Ser Rei dos Piratas"},
-		{"Digimon Tamers","Digimon Adventure","Digimon Data Squad,Digimon Frontier"},
+		{"Digimon Tamers","Digimon Adventure","Digimon Data Squad","Digimon Frontier"},
 		{"Team Rocket","Team Galatic","Team Skull","Team Plasma"},
 		{"7","14","8","64"},
 		{"Grand Line","Digimundo","Upside Down","Azeroth"},
-		{"M„o Direita","CabeÁa","Perna Esquerda","TÛrax"},
-		{"Detroit Smash","Kamehameha","Choque do Trov„o","Gomu Gomu no Red Hawk"},
-		{"Gear","EvoluÁ„o","DigievoluÁ„o","Super Sayijin"},
-		{"Saitama","Goku","Empate","Nenhum dos dois, pois o universo seria destruÌdo durante a luta"},
+		{"M√£o Direita","Cabe√ßa","Perna Esquerda","T√≥rax"},
+		{"Detroit Smash","Kamehameha","Choque do Trov√£o","Gomu Gomu no Red Hawk"},
+		{"Gear","Evolu√ß√£o","Digievolu√ß√£o","Super Sayijin"},
+		{"Saitama","Goku","Empate","Nenhum dos dois, pois o universo seria destru√≠do durante a luta"},
 	};
 	  
+	// inst√¢ncia est√°tica usada para gerar as perguntas
 	private static Anime anime = new Anime();
 	
+	// √çndice da √∫ltima pergunta retirada do array
 	private static int indicePergunta = -1;
+	
+	// Inicializa o array de perguntas
 	static {
 		for (int ix = 0; ix < enunciados.length; ix++) {
 			anime.addPergunta(enunciados[ix], respostas[ix]);
 		}
 	}
 	
+	// Retorna uma pergunta do array de perguntas
 	public Pergunta getPergunta() {
 	    indicePergunta++;
 	return anime.perguntas[indicePergunta];
 	}
 	
+	// Embaralha as perguntas no array de perguntas
+	// Algoritmo de Fischer-Yates
 	private void embaralharPerguntas() {
 		int index;
 	    Pergunta temp;
@@ -77,6 +86,8 @@ public class Anime extends Categoria {
 	    indicePergunta = -1;
 	}
 	
+	// Construtor da classe. O que ele faz de fato √© embaralhar a lista de
+	// perguntas toda vez que uma nova inst√¢ncia √© criada
 	public Anime() {
 		if(!(anime == null)){
 			anime.embaralharPerguntas();

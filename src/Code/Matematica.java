@@ -12,9 +12,10 @@ public class Matematica extends Categoria {
 		
 		return gerarPergunta();
 	}
-	
+	 
 	private Pergunta gerarPergunta() {
 		
+		//Obt√©m o enunciado, resultado do c√°lculo, e qual opera√ß√£o foi utilizada
 		Object[] enunResul = gerarEnunciado();
 		String enunciado = (String) enunResul[0];
 		double resultado = (Double) enunResul[1];
@@ -27,7 +28,7 @@ public class Matematica extends Categoria {
 		return p;
 	}
 	
-	private Object[] gerarEnunciado() {
+	public Object[] gerarEnunciado() {
 		
 		Random random = new Random();
 		
@@ -37,14 +38,14 @@ public class Matematica extends Categoria {
 		
 		do {
 			
-			//Gera dois n˙meros aleatÛrios
+			//Gera dois n√∫meros aleat√≥rios
 			double n1 = random.nextInt(100) + 1;
 			double n2 = random.nextInt(100) + 1;
 			
-			//Gera uma operaÁ„o aleatÛrio
+			//Gera uma opera√ß√£o aleat√≥rio
 			op = random.nextInt(4) + 1;
 			
-			//Verifica qual operaÁ„o foi randomizada e faz o c·lculo da resposta
+			//Verifica qual opera√ß√£o foi randomizada e faz o c√°lculo da resposta
 			switch (op) {
 			
 				case 1: {
@@ -65,12 +66,12 @@ public class Matematica extends Categoria {
 					break;
 				}
 				case 4: {
-					enun = (int)n1 + " ˜ " + (int)n2;
+					enun = (int)n1 + " √∑ " + (int)n2;
 					resul = n1 / n2;
 					break;
 				}
 			}
-		//Verifica se a quest„o j· foi randomizada antes
+		//Verifica se a quest√£o j√° foi randomizada antes
 		} while (enunUsados.indexOf(enun) != -1);
 		
 		enunUsados.add(enun);
@@ -88,7 +89,7 @@ public class Matematica extends Categoria {
 		String alt3 = gerarAlternativa(correta, operacao);
 		String alt4 = gerarAlternativa(correta, operacao);
 		
-		//Verifica se a parte inteira da resposta È igual a parte real dela
+		//Verifica se a parte inteira da resposta √© igual a parte real dela
 		String corretaFormat = (int) correta == correta ? String.valueOf((int) correta) : String.valueOf(correta);
 		
 		return new String[] {corretaFormat, alt2, alt3, alt4};
@@ -102,11 +103,11 @@ public class Matematica extends Categoria {
 		
 		while (alternativa == correta) {
 			
-			//Gera 2 n˙meros aleatÛrios
+			//Gera 2 n√∫meros aleat√≥rios
 			double n1 = random.nextInt(100) + 1;
 			double n2 = random.nextInt(100) + 1;
 			
-			//Verifica qual operaÁ„o foi gerada e faz o c·lculo do resultado
+			//Verifica qual opera√ß√£o foi gerada e faz o c√°lculo do resultado
 			switch (operacao) {
 			
 				case 1: {
@@ -131,7 +132,7 @@ public class Matematica extends Categoria {
 			alternativa = Double.parseDouble(altFormat);
 		}
 		
-		//Verifica se a parte inteira do resultado È igual a parte real
+		//Verifica se a parte inteira do resultado √© igual a parte real
 		return (int) alternativa == alternativa ? String.valueOf((int) alternativa) : String.valueOf(alternativa);	
 	}
 }
