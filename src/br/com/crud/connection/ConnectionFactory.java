@@ -12,14 +12,14 @@ public class ConnectionFactory {
     private static final String password = "35512301";
     
     //Método para retornar a conexão com o banco de dados
-    public static Connection obterConexao() {
+    public static Conexao obterConexao() {
         
         //Variável para retornar a conex�o
-        Connection conexao = null;
+        Conexao conexao = null;
         
         //Realizar a conexão
         try {
-            conexao = DriverManager.getConnection(urlBD, user, password);
+            conexao = (Conexao) DriverManager.getConnection(urlBD, user, password);
             
         }catch(SQLException e) {
            
