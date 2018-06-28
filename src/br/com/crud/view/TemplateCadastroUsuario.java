@@ -1,4 +1,4 @@
-package telas;
+package br.com.crud.view;
 
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
@@ -19,8 +19,8 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
-import dados.Usuario;
-import dados.Usuario.NiveisUsuarios;
+import br.com.crud.bean.UsuarioBean;
+import br.com.crud.bean.UsuarioBean.NiveisUsuarios;
 
 @SuppressWarnings("serial")
 public class TemplateCadastroUsuario extends JFrame {
@@ -42,7 +42,7 @@ public class TemplateCadastroUsuario extends JFrame {
     EventQueue.invokeLater(new Runnable() {
       public void run() {
         try {
-          TemplateCadastroUsuario frame = new TemplateCadastroUsuario(new Usuario());
+          TemplateCadastroUsuario frame = new TemplateCadastroUsuario(new UsuarioBean());
           frame.setVisible(true);
         } catch (Exception e) {
           e.printStackTrace();
@@ -56,7 +56,7 @@ public class TemplateCadastroUsuario extends JFrame {
       EventQueue.invokeLater(new Runnable() {
         public void run() {
           try {
-            frame = new TemplateCadastroUsuario(new Usuario());
+            frame = new TemplateCadastroUsuario(new UsuarioBean());
             frame.setVisible(true);
           } catch (Exception e) {
             e.printStackTrace();
@@ -87,7 +87,7 @@ public class TemplateCadastroUsuario extends JFrame {
   }
 
   private void cadastrarUsuario() {
-    new Usuario(txtNome.getText(), String.valueOf(txtSenha.getPassword()),
+    new UsuarioBean(txtNome.getText(), String.valueOf(txtSenha.getPassword()),
             NiveisUsuarios.values()[cbxAcesso.getSelectedIndex()]);
   }
 
@@ -207,13 +207,13 @@ public class TemplateCadastroUsuario extends JFrame {
   /**
    * Create the frame.
    */
-  private TemplateCadastroUsuario(Usuario usuario) {
+  private TemplateCadastroUsuario(UsuarioBean usuario) {
     // Cria a tela
     carregarTela();
     // Prenche as informações
     txtNome.setText(usuario.getNome());
     txtSenha.setText(usuario.getSenha());
-    cbxAcesso.setSelectedItem(Usuario.getNivelIndex(usuario.getNivel()));
+    cbxAcesso.setSelectedItem(UsuarioBean.getNivelIndex(usuario.getNivel()));
   }
 
 }
