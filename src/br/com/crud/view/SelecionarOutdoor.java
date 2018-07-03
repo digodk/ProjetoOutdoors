@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import br.com.crud.bean.Bean;
 import br.com.crud.bean.OutdoorBean;
 import br.com.crud.dao.OutdoorDao;
 
@@ -22,7 +23,7 @@ public class SelecionarOutdoor extends JDialog {
 
   private static SelecionarOutdoor frame;
   private static OutdoorBean outdoorEditado;
-  private static JComboBox<OutdoorBean> cbxOutdoor;
+  private static JComboBox<Bean> cbxOutdoor;
   private static JPanel contentPane;
   private static boolean telaCarregada=false;
 
@@ -41,7 +42,8 @@ public class SelecionarOutdoor extends JDialog {
   }
 
   private static void editarDados(ActionEvent e) {
-    OutdoorBean out = cbxOutdoor.getItemAt(cbxOutdoor.getSelectedIndex());
+    int idSelecionado = cbxOutdoor.getItemAt(cbxOutdoor.getSelectedIndex()).getID();
+    OutdoorBean out = OutdoorDao.inst().getBean(idSelecionado);
     outdoorEditado = CadastroOutdoor.cadastrar(out);
     Auxiliares.dispararEventoFecharJanela(frame);
   }
@@ -58,7 +60,7 @@ public class SelecionarOutdoor extends JDialog {
     // ---Labels e controles
     JLabel lblSelecioneOOutdoor = new JLabel("Selecione o Outdoor");
     // Outdoor
-    cbxOutdoor = OutdoorDao.getComboBox();
+    cbxOutdoor = OutdoorDao.inst().getComboBox();
     // Botões
     JButton btnEditar = new JButton("Editar");
     JButton btnCancelar = new JButton("Cancelar");
