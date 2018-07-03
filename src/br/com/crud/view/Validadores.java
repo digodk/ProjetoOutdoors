@@ -59,4 +59,12 @@ public class Validadores {
   public static boolean nivelUsuario(NiveisUsuarios acesso) {
     return !acesso.equals(NiveisUsuarios.INDEFINIDO);
   }
+  
+  public static boolean cidade(String cidade) {
+    return !"".equals(cidade);
+  }
+  
+  public static boolean endereco(String endereco) {
+    return !"".equals(endereco);
+  }
 }
