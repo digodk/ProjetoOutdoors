@@ -12,12 +12,12 @@ public class UsuarioBean extends Bean {
     public static NiveisUsuarios converterNivel(int nivel) {
       return Arrays.asList(NiveisUsuarios.values())
               .stream()
-              .filter(v -> v.getNivel() == nivel)
+              .filter(v -> v.toInt() == nivel)
               .findFirst()
               .orElse(INDEFINIDO);
     }
 
-    public int getNivel() {
+    public int toInt() {
       return nivel;
     }
 
