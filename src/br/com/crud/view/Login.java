@@ -14,6 +14,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import br.com.crud.bean.UsuarioBean;
+import br.com.crud.dao.UsuarioDao;
 import net.miginfocom.swing.MigLayout;
 
 @SuppressWarnings("serial")
@@ -61,8 +62,9 @@ public class Login extends JDialog {
         if (nome.equals("") || senha.equals("")) {
           Auxiliares.mensagemErro("Usuário ou senha não preenchidos");
         } else {
-          if (UsuarioBean.existeUsuario(nome)) {
-            UsuarioBean usuario = UsuarioBean.getUsuario(nome);
+          UsuarioBean usuario = UsuarioDao.inst().getUsuario(nome);
+          if (!(usuario==null)) {
+            
             if (senha.equals(usuario.getSenha())) {
               usuario.definirComoAtivo();
               Auxiliares.mensagemOK("Bem vindo!" + usuario.getNome());

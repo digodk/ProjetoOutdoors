@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowListener;
 import java.util.Arrays;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
@@ -21,6 +22,7 @@ import javax.swing.border.MatteBorder;
 
 import br.com.crud.bean.OutdoorBean;
 import br.com.crud.bean.OutdoorBean.TiposOutdoor;
+import br.com.crud.dao.OutdoorDao;
 
 @SuppressWarnings("serial")
 public class CadastroOutdoor extends JDialog {
@@ -36,14 +38,14 @@ public class CadastroOutdoor extends JDialog {
   private static TiposOutdoor tipo;
 
   // ---Procedimentos de gravação do novo Outdoor
-  // Checa inputs
+  // Valida inputs
   private static boolean dadosOK() {
-    if ("".equals(cidade)) {
+    if (!Validador.cidade(cidade)) {
       txtCidade.requestFocus();
       Auxiliares.mensagemErro("Você deve informar uma cidade!");
       return false;
     }
-    if ("".equals(endereco)) {
+    if (Validador.endereco(endereco)) {
       txtEndereco.requestFocus();
       Auxiliares.mensagemErro("Você deve informar um endereço!");
       return false;
@@ -66,7 +68,8 @@ public class CadastroOutdoor extends JDialog {
       outdoorEmCadastro.setCidade(cidade);
       outdoorEmCadastro.setEndereco(endereco);
       outdoorEmCadastro.setTipo(tipo);
-      outdoorCadastrado = OutdoorBean.cadastrar(outdoorEmCadastro);
+      OutdoorDao.inst().cadastrar(outdoorEmCadastro);
+      outdoorCadastrado = outdoorEmCadastro;
       Auxiliares.dispararEventoFecharJanela(frame);
     }
   }

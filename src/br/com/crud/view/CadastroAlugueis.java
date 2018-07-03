@@ -21,7 +21,10 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 
 import br.com.crud.bean.AluguelBean;
+import br.com.crud.bean.Bean;
 import br.com.crud.bean.OutdoorBean;
+import br.com.crud.dao.AluguelDao;
+import br.com.crud.dao.OutdoorDao;
 
 @SuppressWarnings("serial")
 public class CadastroAlugueis extends JDialog {
@@ -31,7 +34,7 @@ public class CadastroAlugueis extends JDialog {
   private static JPanel contentPane;
   private static JTextField txtValor;
   private static JSpinner txtDias;
-  private static JComboBox<OutdoorBean> cbxOutdoor;
+  private static JComboBox<Bean> cbxOutdoor;
   private static JTextArea txtObservacoes;
   private static AluguelBean aluguelCadastrado, aluguelEmCadastro;
   private static int numDias;
@@ -40,19 +43,19 @@ public class CadastroAlugueis extends JDialog {
   private static OutdoorBean outdoor;
 
   // ---Procedimentos de gravação do novo aluguel
-  // Checa inputs
+  // Valida inputs
   private static boolean inputsOK() {
-    if (!aluguelCadastrado.setNumDias(numDias)) {
+    if (!Validador.numDias(numDias)) {
       Auxiliares.mensagemErro("Número inválido de dias");
       txtDias.requestFocus();
       return false;
     }
-    if (!aluguelEmCadastro.setOutdoor(outdoor)) {
+    if (!Validador.existeOutdoor(outdoor)) {
       Auxiliares.mensagemErro("Outdoor inválido, por favor selecione outro.");
       cbxOutdoor.requestFocus();
       return false;
     }
-    if (!aluguelEmCadastro.setValor(valor)) {
+    if (!Validador.valorAluguel(valor)) {
       Auxiliares.mensagemErro("Valor inválido");
       txtValor.requestFocus();
       return false;
@@ -64,7 +67,7 @@ public class CadastroAlugueis extends JDialog {
   private static void lerInputs() {
     numDias = (int) (txtDias.getValue());
     valor = Double.valueOf(txtValor.getText().replace("R$", ""));
-    outdoor = OutdoorBean.getListaOutdoors().get(cbxOutdoor.getSelectedIndex());
+    outdoor = OutdoorDao.inst().getLista().get(cbxOutdoor.getSelectedIndex());
     observacao = txtObservacoes.getText();
   }
 
@@ -75,9 +78,10 @@ public class CadastroAlugueis extends JDialog {
     if (inputsOK()) {
       aluguelEmCadastro.setNumDias(numDias);
       aluguelEmCadastro.setObservacao(observacao);
-      aluguelEmCadastro.setOutdoor(outdoor);
+      aluguelEmCadastro.setOutdoor(outdoor.getID());
       aluguelEmCadastro.setValor(valor);
-      aluguelCadastrado = AluguelBean.cadastrar(aluguelEmCadastro);
+      AluguelDao.inst().cadastrar(aluguelEmCadastro);
+      aluguelCadastrado = aluguelEmCadastro;
       Auxiliares.dispararEventoFecharJanela(frame);
     }
   }
@@ -97,7 +101,7 @@ public class CadastroAlugueis extends JDialog {
     }
     txtDias.setValue(alu.getNumDias());
     txtValor.setText(String.format("R$ %.2f", alu.getValor()));
-    int index = alu.getOutdoor() == null ? 0 : OutdoorBean.getListaOutdoors().indexOf(alu.getOutdoor());
+    int index = alu.getOutdoor() == null ? 0 : OutdoorDao.inst().getLista().indexOf(alu.getOutdoor());
     cbxOutdoor.setSelectedIndex(index);
     aluguelEmCadastro = alu;
     aluguelCadastrado = null;
@@ -136,7 +140,7 @@ public class CadastroAlugueis extends JDialog {
     txtObservacoes = new JTextArea();
     txtObservacoes.setBorder(new MatteBorder(1, 1, 1, 1, new Color(0, 0, 0)));
     // Combobox para seleção do Outdoor
-    cbxOutdoor = OutdoorBean.getComboBox();
+    cbxOutdoor = OutdoorDao.inst().getComboBox();
 
     // ---Listeners e validadores
     // Listeners para os botões

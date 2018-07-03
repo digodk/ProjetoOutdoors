@@ -17,6 +17,7 @@ import javax.swing.border.EmptyBorder;
 
 import br.com.crud.bean.UsuarioBean;
 import br.com.crud.bean.UsuarioBean.NiveisUsuarios;
+import br.com.crud.dao.UsuarioDao;
 
 @SuppressWarnings("serial")
 public class CadastroUsuarios extends JFrame {
@@ -36,19 +37,29 @@ public class CadastroUsuarios extends JFrame {
   private static NiveisUsuarios acesso;
 
   // ---Procedimentos de gravação do novo Usuário
-  // Checa inputs
+  // Valida inputs
   private static boolean dadosOk() {
-    if (nome.equals("")) {
+    
+    if (!Validador.existeUsuario(nome)) {
+      Auxiliares.mensagemErro("O nome digitado já está em uso.");;
+      txtNome.requestFocus();
+      return false;
+    }
+    
+    if (!Validador.nomeUsuario(nome)) {
       Auxiliares.mensagemErro("Você deve digitar o nome do usuário!");;
       txtNome.requestFocus();
       return false;
     }
-    if (senha.equals("")) {
+    
+    if (!Validador.senhaUsuario(senha)) {
       Auxiliares.mensagemErro("Você deve digitar uma senha!");
       txtSenha.requestFocus();
       return false;
     }
-    if (acesso.equals(NiveisUsuarios.INDEFINIDO)) {
+    
+    
+    if (!Validador.nivelUsuario(acesso)) {
       Auxiliares.mensagemErro("Você deve selecionar um nível de acesso!");
       cbxAcesso.requestFocus();
       return false;
@@ -71,7 +82,8 @@ public class CadastroUsuarios extends JFrame {
       usuarioEmCadastro.setNome(nome);
       usuarioEmCadastro.setSenha(senha);
       usuarioEmCadastro.setNivel(acesso);
-      usuarioCadastrado = UsuarioBean.cadastrar(usuarioEmCadastro);
+      UsuarioDao.inst().cadastrar(usuarioEmCadastro);
+      usuarioCadastrado = usuarioEmCadastro;
       Auxiliares.dispararEventoFecharJanela(frame);
     }
   }
@@ -90,7 +102,7 @@ public class CadastroUsuarios extends JFrame {
     usuarioCadastrado = null;
     txtNome.setText(usuario.getNome());
     txtSenha.setText(usuario.getSenha());
-    cbxAcesso.setSelectedItem(UsuarioBean.getNivelIndex(usuario.getNivel()));
+    cbxAcesso.setSelectedItem(usuario.getNivel().toInt());
     frame.setVisible(true);
     return usuarioCadastrado;
   }
