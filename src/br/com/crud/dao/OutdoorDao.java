@@ -62,11 +62,6 @@ public class OutdoorDao extends DAO<OutdoorBean> {
   protected String campoID() {
     return "idOutdoor";
   }
-
-  public static OutdoorBean getOutdoor(int idOutdoor) {
-    // TODO Auto-generated method stub
-    return null;
-  }
   
   private OutdoorDao() {
     super();
