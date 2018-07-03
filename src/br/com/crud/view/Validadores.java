@@ -3,6 +3,7 @@ package br.com.crud.view;
 import br.com.crud.bean.AluguelBean;
 import br.com.crud.bean.OutdoorBean;
 import br.com.crud.bean.UsuarioBean;
+import br.com.crud.bean.UsuarioBean.NiveisUsuarios;
 import br.com.crud.dao.AluguelDao;
 import br.com.crud.dao.OutdoorDao;
 import br.com.crud.dao.UsuarioDao;
@@ -45,5 +46,17 @@ public class Validadores {
   
   public static boolean valorAluguel(double valor) {
     return valor >=0;
+  }
+  
+  public static boolean nomeUsuario(String nome) {
+    return !("".equals(nome));
+  }
+  
+  public static boolean senhaUsuario(String senha) {
+    return !("".equals(senha));
+  }
+  
+  public static boolean nivelUsuario(NiveisUsuarios acesso) {
+    return !acesso.equals(NiveisUsuarios.INDEFINIDO);
   }
 }

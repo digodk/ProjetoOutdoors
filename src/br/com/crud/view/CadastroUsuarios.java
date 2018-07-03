@@ -37,19 +37,29 @@ public class CadastroUsuarios extends JFrame {
   private static NiveisUsuarios acesso;
 
   // ---Procedimentos de gravação do novo Usuário
-  // Checa inputs
+  // Valida inputs
   private static boolean dadosOk() {
-    if (nome.equals("")) {
+    
+    if (!Validadores.existeUsuario(nome)) {
+      Auxiliares.mensagemErro("O nome digitado já está em uso.");;
+      txtNome.requestFocus();
+      return false;
+    }
+    
+    if (!Validadores.nomeUsuario(nome)) {
       Auxiliares.mensagemErro("Você deve digitar o nome do usuário!");;
       txtNome.requestFocus();
       return false;
     }
-    if (senha.equals("")) {
+    
+    if (!Validadores.senhaUsuario(senha)) {
       Auxiliares.mensagemErro("Você deve digitar uma senha!");
       txtSenha.requestFocus();
       return false;
     }
-    if (acesso.equals(NiveisUsuarios.INDEFINIDO)) {
+    
+    
+    if (!Validadores.nivelUsuario(acesso)) {
       Auxiliares.mensagemErro("Você deve selecionar um nível de acesso!");
       cbxAcesso.requestFocus();
       return false;
