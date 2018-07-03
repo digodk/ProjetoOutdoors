@@ -17,6 +17,7 @@ import javax.swing.border.EmptyBorder;
 
 import br.com.crud.bean.UsuarioBean;
 import br.com.crud.bean.UsuarioBean.NiveisUsuarios;
+import br.com.crud.dao.UsuarioDao;
 
 @SuppressWarnings("serial")
 public class CadastroUsuarios extends JFrame {
@@ -71,7 +72,8 @@ public class CadastroUsuarios extends JFrame {
       usuarioEmCadastro.setNome(nome);
       usuarioEmCadastro.setSenha(senha);
       usuarioEmCadastro.setNivel(acesso);
-      usuarioCadastrado = UsuarioBean.cadastrar(usuarioEmCadastro);
+      UsuarioDao.inst().cadastrar(usuarioEmCadastro);
+      usuarioCadastrado = usuarioEmCadastro;
       Auxiliares.dispararEventoFecharJanela(frame);
     }
   }
@@ -90,7 +92,7 @@ public class CadastroUsuarios extends JFrame {
     usuarioCadastrado = null;
     txtNome.setText(usuario.getNome());
     txtSenha.setText(usuario.getSenha());
-    cbxAcesso.setSelectedItem(UsuarioBean.getNivelIndex(usuario.getNivel()));
+    cbxAcesso.setSelectedItem(usuario.getNivel().toInt());
     frame.setVisible(true);
     return usuarioCadastrado;
   }
