@@ -5,13 +5,14 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
 
+import br.com.crud.bean.Bean;
 import br.com.interfaces.Descritor;
 
 @SuppressWarnings("serial")
-public class DescritorComboBox extends JLabel implements ListCellRenderer<Descritor> {
+public class DescritorComboBox extends JLabel implements ListCellRenderer<Bean> {
 
   @Override
-  public Component getListCellRendererComponent(JList<? extends Descritor> list, Descritor value, int index,
+  public Component getListCellRendererComponent(JList<? extends Bean> list, Bean value, int index,
       boolean isSelected, boolean cellHasFocus) {
 
     if (isSelected) {

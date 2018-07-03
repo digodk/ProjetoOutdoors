@@ -21,6 +21,7 @@ import javax.swing.border.MatteBorder;
 
 import br.com.crud.bean.OutdoorBean;
 import br.com.crud.bean.OutdoorBean.TiposOutdoor;
+import br.com.crud.dao.OutdoorDao;
 
 @SuppressWarnings("serial")
 public class CadastroOutdoor extends JDialog {
@@ -66,7 +67,8 @@ public class CadastroOutdoor extends JDialog {
       outdoorEmCadastro.setCidade(cidade);
       outdoorEmCadastro.setEndereco(endereco);
       outdoorEmCadastro.setTipo(tipo);
-      outdoorCadastrado = OutdoorBean.cadastrar(outdoorEmCadastro);
+      OutdoorDao.cadastrar(outdoorEmCadastro);
+      outdoorCadastrado = outdoorEmCadastro;
       Auxiliares.dispararEventoFecharJanela(frame);
     }
   }

@@ -1,90 +1,41 @@
 package br.com.crud.bean;
 
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import javax.swing.JComboBox;
 
-import br.com.crud.view.Auxiliares;
-import br.com.crud.view.DescritorComboBox;
-import br.com.interfaces.Descritor;
-
-public class UsuarioBean implements Descritor {
+public class UsuarioBean extends Bean {
   public enum NiveisUsuarios {
-    INDEFINIDO, FUNCIONARIO, GERENTE;
+    INDEFINIDO(0), FUNCIONARIO(1), GERENTE(2);
+
+    private int nivel;
+    
+    // Função que retorna o nível de acesso relativo a um inteiro
+    public static NiveisUsuarios converterNivel(int nivel) {
+      return Arrays.asList(NiveisUsuarios.values())
+              .stream()
+              .filter(v -> v.getNivel() == nivel)
+              .findFirst()
+              .orElse(INDEFINIDO);
+    }
+
+    public int getNivel() {
+      return nivel;
+    }
+
+    NiveisUsuarios(int nivel) {
+      this.nivel = nivel;
+    }
   }
 
-  private static UsuarioBean usuarioAtivo = null;
-  private static Map<String, UsuarioBean> listaUsuarios = new HashMap<>();
-  static {
-    new UsuarioBean("Diogo", "111", NiveisUsuarios.GERENTE);
-    new UsuarioBean("Joao", "222", NiveisUsuarios.FUNCIONARIO);
-  }
+  private static UsuarioBean usuarioAtivo;
+
   private String nome = "";
   private String senha = "";
-  
   private NiveisUsuarios nivel;
 
   public static boolean alguemLogado() {
-    return !(usuarioAtivo==null);
+    return !(usuarioAtivo == null);
   }
 
-  public static UsuarioBean cadastrar(String nome, String senha, NiveisUsuarios nivel) {
-    if(!existeUsuario(nome)) {
-      return new UsuarioBean(nome, senha, nivel);
-    } else {
-      UsuarioBean usuario = getUsuario(nome);
-      usuario.setNome(nome);
-      usuario.setSenha(senha);
-      usuario.setNivel(nivel);
-      return usuario;
-    }
-  }
-  
-  public static UsuarioBean cadastrar(UsuarioBean usuario) {
-    if(existeUsuario(usuario.getNome())) {
-      listaUsuarios.put(usuario.getNome(), usuario);
-    } else {
-      usuario = cadastrar(usuario.getNome(), usuario.getSenha(), usuario.getNivel());
-    }
-    return usuario;
-  }
-
-  public static boolean existeUsuario(String nome) {
-    return listaUsuarios.containsKey(nome.toLowerCase());
-  }
-
-  public static Map<String, UsuarioBean> getListaUsuarios() {
-    return listaUsuarios;
-  }
-  
-  public static UsuarioBean[] getArrayUsuarios() {
-    if (listaUsuarios.size() == 0) {
-      return new UsuarioBean[0];
-    } else {
-      return listaUsuarios.values().toArray(new UsuarioBean[listaUsuarios.size()]);
-    }
-  }
-  
-  public static JComboBox<UsuarioBean> getComboBox() {
-    JComboBox<UsuarioBean> cbxOutdoor = new JComboBox<>();
-    // Popula o combobox com os outdoors existentes
-    cbxOutdoor.setModel(Auxiliares.listaComboBox(UsuarioBean.getArrayUsuarios()));
-    // Define um renderer para determinar quais dados do Outdoor vão aparecer na combobox.
-    // Para isso, foi criado uma classe DescritorComboBox que usa do método getDescricao de uma
-    // subclasse da classe Dados, como a clase aluguel ou outdoor.
-    cbxOutdoor.setRenderer(new DescritorComboBox());
-    return cbxOutdoor;
-  }
-
-  public static int getNivelIndex(NiveisUsuarios nivel) {
-    return Arrays.asList(NiveisUsuarios.values()).indexOf(nivel);
-  }
-
-  public static UsuarioBean getUsuario(String nome) {
-    return listaUsuarios.get(nome.toLowerCase());
-  }
-  
   public static UsuarioBean getUsuarioAtivo() {
     return usuarioAtivo;
   }
@@ -113,9 +64,13 @@ public class UsuarioBean implements Descritor {
   public String getSenha() {
     return senha;
   }
-  
+
   public void setNivel(NiveisUsuarios nivel) {
     this.nivel = nivel;
+  }
+  
+  public void setNivel(int nivel) {
+    setNivel(NiveisUsuarios.converterNivel(nivel));
   }
 
   public void setNome(String nome) {
@@ -131,11 +86,12 @@ public class UsuarioBean implements Descritor {
   }
 
   public UsuarioBean(String nome, String senha, NiveisUsuarios nivel) {
-    if (!existeUsuario(nome)) {
-      this.nome = nome;
-      this.senha = senha;
-      this.nivel = nivel;
-      listaUsuarios.put(nome.toLowerCase(), this);
-    }
+    this.nome = nome;
+    this.senha = senha;
+    this.nivel = nivel;
+  }
+  
+  public static void tester() {
+    // Método de teste
   }
 }
