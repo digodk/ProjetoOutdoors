@@ -3,6 +3,7 @@ package br.com.crud.view;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowListener;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
@@ -14,13 +15,15 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import br.com.crud.bean.AluguelBean;
+import br.com.crud.bean.Bean;
+import br.com.crud.dao.AluguelDao;
 
 @SuppressWarnings("serial")
 public class SelecionarAluguel extends JDialog {
 
   private static SelecionarAluguel frame;
   private static AluguelBean aluguelEditado;
-  private static JComboBox<AluguelBean> cbxAluguel;
+  private static JComboBox<Bean> cbxAluguel;
   private static JPanel contentPane;
   private static boolean telaCarregada;
 
@@ -43,7 +46,8 @@ public class SelecionarAluguel extends JDialog {
   }
 
   private static void editarDados(ActionEvent e) {
-    AluguelBean alu = cbxAluguel.getItemAt(cbxAluguel.getSelectedIndex());
+    int idSelecionado = cbxAluguel.getItemAt(cbxAluguel.getSelectedIndex()).getID();
+    AluguelBean alu = AluguelDao.inst().getBean(idSelecionado);
     aluguelEditado = CadastroAlugueis.cadastrar(alu);
     Auxiliares.dispararEventoFecharJanela(frame);
   }
@@ -60,7 +64,7 @@ public class SelecionarAluguel extends JDialog {
     // ---Labels e controles
     JLabel lblSelecioneOOutdoor = new JLabel("Selecione o Outdoor");
     // Outdoor
-    cbxAluguel = AluguelBean.getComboBox();
+    cbxAluguel = AluguelDao.inst().getComboBox();
     // Botões
     JButton btnEditar = new JButton("Editar");
     JButton btnCancelar = new JButton("Cancelar");
