@@ -91,27 +91,6 @@ public abstract class DAO<T extends Bean> {
 
   }
 
-  public T getObjeto(int id) {
-    // SQL
-    String query = "SELECT * FROM " + nomeTabela() + " WHERE " + campoID() + " = ?";
-
-    try {
-      PreparedStatement statement = con.prepareStatement(query);
-      statement.setInt(1, id);
-      ResultSet resultado = statement.executeQuery();
-      if (!resultado.next()) {
-        return null;
-      }
-      T bean = resultadoParaBean(resultado);
-      statement.close();
-      return bean;
-    } catch (Exception e) {
-      System.out.println("Erro ao coletar informações do objeto: ");
-      e.printStackTrace();
-      return null;
-    }
-  }
-
   public List<T> getLista() {
     List<T> lista = new ArrayList<>();
     // SQL
@@ -152,9 +131,10 @@ public abstract class DAO<T extends Bean> {
 
   // Método para retornar uma instância de um id específico da classe
   public T getBean(int idBean) {
-    String query = "SELECT * FROM " + nomeTabela() + " WHERE " + campoID() + " = " + idBean;
+    String query = "SELECT * FROM " + nomeTabela() + " WHERE " + campoID() + " = ?";
     try {
     PreparedStatement statement = con.prepareStatement(query);
+    statement.setInt(1, idBean);
     ResultSet resultado = statement.executeQuery();
     if (!resultado.next()) {
       return null;
@@ -165,6 +145,21 @@ public abstract class DAO<T extends Bean> {
       System.out.println("Erro ao obter instância do bean:");
       e.printStackTrace();
       return null;
+    }
+  }
+  
+  // Método para checar se existe um id do bean cadastrado
+  public boolean existeID(int idBean) {
+    String query = "SELECT * FROM " + nomeTabela() + " WHERE " + campoID() + " = ?";
+    try {
+    PreparedStatement statement = con.prepareStatement(query);
+    statement.setInt(1, idBean);
+    ResultSet resultado = statement.executeQuery();
+    return resultado.next();
+    } catch (Exception e) {
+      System.out.println("Erro ao obter informação sobre entry do id:");
+      e.printStackTrace();
+      return false;
     }
   }
   

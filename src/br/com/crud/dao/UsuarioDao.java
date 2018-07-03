@@ -6,6 +6,12 @@ import java.sql.ResultSet;
 import br.com.crud.bean.UsuarioBean;
 
 public class UsuarioDao extends DAO<UsuarioBean> {
+  
+  private static UsuarioDao instancia = new UsuarioDao();
+
+  public static UsuarioDao inst() {
+    return instancia;
+  }
 
   @Override
   protected UsuarioBean resultadoParaBean(ResultSet resultado) {
@@ -54,5 +60,9 @@ public class UsuarioDao extends DAO<UsuarioBean> {
   @Override
   protected String campoID() {
     return "idUsuario";
+  }
+  
+  private UsuarioDao() {
+    super();
   }
 }

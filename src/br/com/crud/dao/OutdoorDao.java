@@ -8,6 +8,12 @@ import br.com.crud.bean.OutdoorBean.TiposOutdoor;
 
 public class OutdoorDao extends DAO<OutdoorBean> {
 
+  private static OutdoorDao instancia = new OutdoorDao();
+  
+  public static OutdoorDao inst() {
+    return instancia;
+  }
+  
   @Override
   protected OutdoorBean resultadoParaBean(ResultSet resultado) {
     OutdoorBean out = new OutdoorBean();
@@ -60,6 +66,10 @@ public class OutdoorDao extends DAO<OutdoorBean> {
   public static OutdoorBean getOutdoor(int idOutdoor) {
     // TODO Auto-generated method stub
     return null;
+  }
+  
+  private OutdoorDao() {
+    super();
   }
 
 }

@@ -7,6 +7,12 @@ import br.com.crud.bean.AluguelBean;
 
 public class AluguelDao extends DAO<AluguelBean> {
 
+  private static AluguelDao instancia = new AluguelDao();
+
+  public static AluguelDao inst() {
+    return instancia;
+  }
+
   @Override
   protected AluguelBean resultadoParaBean(ResultSet resultado) {
     AluguelBean alu = new AluguelBean();
@@ -56,5 +62,9 @@ public class AluguelDao extends DAO<AluguelBean> {
   @Override
   protected String campoID() {
     return "idAluguel";
+  }
+  
+  private AluguelDao() {
+    super();
   }
 }
