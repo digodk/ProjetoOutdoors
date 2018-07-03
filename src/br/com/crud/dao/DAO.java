@@ -8,10 +8,7 @@ import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
-import com.mysql.cj.xdevapi.Statement;
-
 import br.com.crud.bean.Bean;
-import br.com.crud.bean.OutdoorBean;
 import br.com.crud.connection.Conexao;
 import br.com.crud.view.Auxiliares;
 import br.com.crud.view.DescritorComboBox;
