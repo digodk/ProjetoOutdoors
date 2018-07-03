@@ -2,7 +2,6 @@ package br.com.crud.bean;
 
 import java.util.Arrays;
 
-import br.com.crud.bean.OutdoorBean.TiposOutdoor;
 import br.com.crud.view.Auxiliares;
 
 /*
