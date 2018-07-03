@@ -21,7 +21,7 @@ public class OutdoorBean extends Bean {
     public static TiposOutdoor converterTipo(int tipo) {
       return Arrays.asList(TiposOutdoor.values())
               .stream()
-              .filter(v -> v.getTipo() == tipo)
+              .filter(v -> v.toInt() == tipo)
               .findFirst()
               .orElse(INDEFINIDO);
     }
@@ -30,7 +30,7 @@ public class OutdoorBean extends Bean {
       return nome;
     }
 
-    public int getTipo() {
+    public int toInt() {
       return tipo;
     }
 
