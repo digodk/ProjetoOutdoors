@@ -34,7 +34,7 @@ public class AluguelBean extends Bean  {
   }
 
   // Retorna o outdoor associado com esse aluguel
-  public OutdoorBean getOutdoor(int idOutdoor) {
+  public OutdoorBean getOutdoor() {
     return out;
   }
 
