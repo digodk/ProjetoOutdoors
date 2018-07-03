@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowListener;
 import java.util.Arrays;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
@@ -67,7 +68,7 @@ public class CadastroOutdoor extends JDialog {
       outdoorEmCadastro.setCidade(cidade);
       outdoorEmCadastro.setEndereco(endereco);
       outdoorEmCadastro.setTipo(tipo);
-      OutdoorDao.cadastrar(outdoorEmCadastro);
+      OutdoorDao.inst().cadastrar(outdoorEmCadastro);
       outdoorCadastrado = outdoorEmCadastro;
       Auxiliares.dispararEventoFecharJanela(frame);
     }
