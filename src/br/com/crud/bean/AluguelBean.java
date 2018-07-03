@@ -77,9 +77,8 @@ public class AluguelBean extends Bean  {
   }
 
   public void setOutdoor(int idOutdoor) {
-    OutdoorDao outDao = new OutdoorDao();
     this.idOutdoor = idOutdoor;
-    out = outDao.getBean(idOutdoor);
+    out = OutdoorDao.inst().getBean(idOutdoor);
   }
 
   public boolean setValor(double valor) {
