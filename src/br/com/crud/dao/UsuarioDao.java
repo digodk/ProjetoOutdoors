@@ -34,7 +34,7 @@ public class UsuarioDao extends DAO<UsuarioBean> {
       PreparedStatement statement = con.prepareStatement(query);
       statement.setString(1, bean.getNome());
       statement.setString(2, bean.getSenha());
-      statement.setInt(3, bean.getNivel().getNivel());
+      statement.setInt(3, bean.getNivel().toInt());
       return statement;
     } catch (Exception e) {
       e.printStackTrace();

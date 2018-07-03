@@ -33,7 +33,7 @@ public class OutdoorDao extends DAO<OutdoorBean> {
   protected PreparedStatement statementCadastro(String query, OutdoorBean bean) {
     try {
       PreparedStatement statement = con.prepareStatement(query);
-      statement.setInt(1, bean.getTipo().getTipo());
+      statement.setInt(1, bean.getTipo().toInt());
       statement.setString(2, bean.getEndereco());
       statement.setString(3, bean.getCidade());
       return statement;
