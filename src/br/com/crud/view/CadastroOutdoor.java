@@ -40,12 +40,12 @@ public class CadastroOutdoor extends JDialog {
   // ---Procedimentos de gravação do novo Outdoor
   // Valida inputs
   private static boolean dadosOK() {
-    if (!Validadores.cidade(cidade)) {
+    if (!Validador.cidade(cidade)) {
       txtCidade.requestFocus();
       Auxiliares.mensagemErro("Você deve informar uma cidade!");
       return false;
     }
-    if (Validadores.endereco(endereco)) {
+    if (Validador.endereco(endereco)) {
       txtEndereco.requestFocus();
       Auxiliares.mensagemErro("Você deve informar um endereço!");
       return false;

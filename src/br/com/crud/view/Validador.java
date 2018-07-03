@@ -8,7 +8,7 @@ import br.com.crud.dao.AluguelDao;
 import br.com.crud.dao.OutdoorDao;
 import br.com.crud.dao.UsuarioDao;
 
-public class Validadores {
+public class Validador {
   // Métodos que checam se existe no BD o ID informado. Usa o procedimento da
   // classe DAO
   public static boolean existeOutdoor(int idOutdoor) {

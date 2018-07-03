@@ -40,26 +40,26 @@ public class CadastroUsuarios extends JFrame {
   // Valida inputs
   private static boolean dadosOk() {
     
-    if (!Validadores.existeUsuario(nome)) {
+    if (!Validador.existeUsuario(nome)) {
       Auxiliares.mensagemErro("O nome digitado já está em uso.");;
       txtNome.requestFocus();
       return false;
     }
     
-    if (!Validadores.nomeUsuario(nome)) {
+    if (!Validador.nomeUsuario(nome)) {
       Auxiliares.mensagemErro("Você deve digitar o nome do usuário!");;
       txtNome.requestFocus();
       return false;
     }
     
-    if (!Validadores.senhaUsuario(senha)) {
+    if (!Validador.senhaUsuario(senha)) {
       Auxiliares.mensagemErro("Você deve digitar uma senha!");
       txtSenha.requestFocus();
       return false;
     }
     
     
-    if (!Validadores.nivelUsuario(acesso)) {
+    if (!Validador.nivelUsuario(acesso)) {
       Auxiliares.mensagemErro("Você deve selecionar um nível de acesso!");
       cbxAcesso.requestFocus();
       return false;

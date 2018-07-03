@@ -45,17 +45,17 @@ public class CadastroAlugueis extends JDialog {
   // ---Procedimentos de gravação do novo aluguel
   // Valida inputs
   private static boolean inputsOK() {
-    if (!Validadores.numDias(numDias)) {
+    if (!Validador.numDias(numDias)) {
       Auxiliares.mensagemErro("Número inválido de dias");
       txtDias.requestFocus();
       return false;
     }
-    if (!Validadores.existeOutdoor(outdoor)) {
+    if (!Validador.existeOutdoor(outdoor)) {
       Auxiliares.mensagemErro("Outdoor inválido, por favor selecione outro.");
       cbxOutdoor.requestFocus();
       return false;
     }
-    if (!Validadores.valorAluguel(valor)) {
+    if (!Validador.valorAluguel(valor)) {
       Auxiliares.mensagemErro("Valor inválido");
       txtValor.requestFocus();
       return false;
