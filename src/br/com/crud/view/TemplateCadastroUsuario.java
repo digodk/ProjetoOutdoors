@@ -213,7 +213,7 @@ public class TemplateCadastroUsuario extends JFrame {
     // Prenche as informações
     txtNome.setText(usuario.getNome());
     txtSenha.setText(usuario.getSenha());
-    cbxAcesso.setSelectedItem(UsuarioBean.getNivelIndex(usuario.getNivel()));
+    cbxAcesso.setSelectedItem(usuario.getNivel().toInt());
   }
 
 }
