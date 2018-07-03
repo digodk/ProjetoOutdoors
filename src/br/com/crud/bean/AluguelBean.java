@@ -14,19 +14,6 @@ public class AluguelBean extends Bean  {
   private int idOutdoor = 0;
   private OutdoorBean out = null;
 
-  // Validação individual das variáveis
-  public boolean validarNumDias() {
-    return numDias > 0;
-  }
-
-  public boolean validarOutdoor() {
-    return !(idOutdoor == 0);
-  }
-
-  public boolean validarValor() {
-    return valor > 0;
-  }
-
   // Método herdado da classe abstrata de dados. Fornece uma descrição do objeto
   // para ser colocada nas combobox
   // TODO Corrigir get do outdoor associado com o aluguel usando a classe DAO
@@ -67,9 +54,8 @@ public class AluguelBean extends Bean  {
     setObservacao(observacao);
   }
   
-  public boolean setNumDias(int numDias) {
+  public void setNumDias(int numDias) {
     this.numDias = numDias;
-    return validarNumDias();
   }
 
   public void setObservacao(String observacao) {
@@ -81,9 +67,8 @@ public class AluguelBean extends Bean  {
     out = OutdoorDao.inst().getBean(idOutdoor);
   }
 
-  public boolean setValor(double valor) {
+  public void setValor(double valor) {
     this.valor = valor;
-    return validarValor();
   }
 
   // Construtor usado para um novo aluguel
