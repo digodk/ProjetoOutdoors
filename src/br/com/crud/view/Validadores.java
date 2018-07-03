@@ -21,6 +21,11 @@ public class Validadores {
   public static boolean existeUsuario(int idUsuario) {
     return UsuarioDao.inst().existeID(idUsuario);
   }
+  
+  public static boolean existeUsuario(String nome) {
+    UsuarioBean usu = UsuarioDao.inst().getUsuario(nome);
+    return !(usu==null);
+  }
 
   public static boolean existeUsuario(UsuarioBean usu) {
     return UsuarioDao.inst().existeID(usu.getID());
