@@ -4,20 +4,30 @@ import java.util.Arrays;
 
 import br.com.crud.view.Auxiliares;
 
-/*
- * Classe que representa o outdoor. Contém métodos estáticos para manipular todos os 
- * aluguéis e também métodos locais para manipular as instâncias.
-*/
+/**
+ * @author 105004 Classe que representa o outdoor. Contém métodos estáticos para
+ *         manipular todos os aluguéis e também métodos locais para manipular as
+ *         instâncias.
+ */
 public class OutdoorBean extends Bean {
-  // Enum para os tipos de outdoor. Contém um valor autodescritivo para exibição
-  // em menus.
+  /**
+   * @author 105004 Enum para os tipos de outdoor. Contém um valor
+   *         autodescritivo para exibiçãoem menus.
+   */
   public enum TiposOutdoor {
     INDEFINIDO("Indefinido", 0), MADEIRA("Madeira", 1), METAL("Metal", 2), LED("LED", 3);
 
     private String nome;
     private int tipo;
 
-    // Converte um número para um tipo de outdoor
+    //
+    /**
+     * Converte um número para um tipo de outdoor
+     * 
+     * @param tipo
+     *          valor numérico que representa o tipo
+     * @return valor TiposOutdoor associado ao número
+     */
     public static TiposOutdoor converterTipo(int tipo) {
       return Arrays.asList(TiposOutdoor.values())
               .stream()
@@ -30,6 +40,9 @@ public class OutdoorBean extends Bean {
       return nome;
     }
 
+    /**
+     * @return número associado ao Tipo de Outdoor
+     */
     public int toInt() {
       return tipo;
     }
@@ -45,14 +58,11 @@ public class OutdoorBean extends Bean {
 
   private TiposOutdoor tipo = TiposOutdoor.INDEFINIDO;
 
-  // Método herdado da classe abstrata de dados. Fornece uma descrição do objeto
-  // para ser colocada nas combobox
   @Override
   public String getDescricao() {
     return tipo.getNome() + "-" + cidade + "-" + Auxiliares.safeLeftSubstring(endereco, 15);
   }
 
-  // Settters e Getters
   public String getCidade() {
     return cidade;
   }
@@ -65,7 +75,16 @@ public class OutdoorBean extends Bean {
     return tipo;
   }
 
-  // Método que grava os dados setáveis de uma instância
+  /**
+   * Grava vários valores em um método
+   * 
+   * @param endereco
+   *          endereço do outdoor
+   * @param cidade
+   *          cidade do outdoor
+   * @param tipo
+   *          tipo de outdoors
+   */
   public void gravarDados(String endereco, String cidade, TiposOutdoor tipo) {
     setEndereco(endereco);
     setCidade(cidade);
@@ -88,12 +107,23 @@ public class OutdoorBean extends Bean {
     setTipo(TiposOutdoor.converterTipo(tipo));
   }
 
-  // Construtor de uma instância
+  /**
+   * Construtor com configuração de valores
+   * 
+   * @param endereco
+   *          endereço do outdoor
+   * @param cidade
+   *          cidade do outdoor
+   * @param tipo
+   *          tipo de outdoors
+   */
   public OutdoorBean(String endereco, String cidade, TiposOutdoor tipo) {
     gravarDados(endereco, cidade, tipo);
   }
 
-  // Construtor genérico público
+  /**
+   * Construtor público
+   */
   public OutdoorBean() {
 
   }

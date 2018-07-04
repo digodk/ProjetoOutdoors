@@ -2,13 +2,22 @@ package br.com.crud.bean;
 
 import java.util.Arrays;
 
+/**
+ * @author 105004
+ * Classe que representa um usuário. Usada para estruturar os dados.
+ */
 public class UsuarioBean extends Bean {
   public enum NiveisUsuarios {
     INDEFINIDO(0), FUNCIONARIO(1), GERENTE(2);
 
     private int nivel;
 
-    // Função que retorna o nível de acesso relativo a um inteiro
+    
+    /**
+     * Converte um número inteiro em um nível de usuário. Números inválidos retornam INDEFINIDO
+     * @param nivel valor inteiro que represent o nível do usuário
+     * @return o NiveisUsuarios do usuário
+     */
     public static NiveisUsuarios converterNivel(int nivel) {
       return Arrays.asList(NiveisUsuarios.values())
               .stream()
