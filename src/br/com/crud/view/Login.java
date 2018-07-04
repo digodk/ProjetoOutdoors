@@ -42,7 +42,7 @@ public class Login extends JDialog {
     }
     return usuarioLogado;
   }
-  
+
   private static void limparCampos() {
     txtNome.setText("");
     txtSenha.setText("");
@@ -64,8 +64,8 @@ public class Login extends JDialog {
           Auxiliares.mensagemErro("Usuário ou senha não preenchidos");
         } else {
           UsuarioBean usuario = UsuarioDao.inst().getUsuario(nome);
-          if (!(usuario==null)) {
-            
+          if (!(usuario == null)) {
+
             if (senha.equals(usuario.getSenha())) {
               usuario.definirComoAtivo();
               Auxiliares.mensagemOK("Bem vindo!" + usuario.getNome());

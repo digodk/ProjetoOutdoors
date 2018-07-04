@@ -13,7 +13,7 @@ public class DescritorComboBox extends JLabel implements ListCellRenderer<Bean> 
 
   @Override
   public Component getListCellRendererComponent(JList<? extends Bean> list, Bean value, int index,
-      boolean isSelected, boolean cellHasFocus) {
+          boolean isSelected, boolean cellHasFocus) {
 
     if (isSelected) {
       setBackground(list.getSelectionBackground());
@@ -28,7 +28,5 @@ public class DescritorComboBox extends JLabel implements ListCellRenderer<Bean> 
 
     return this;
   }
-
-
 
 }

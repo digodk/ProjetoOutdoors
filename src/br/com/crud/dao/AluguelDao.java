@@ -63,7 +63,7 @@ public class AluguelDao extends DAO<AluguelBean> {
   protected String campoID() {
     return "idAluguel";
   }
-  
+
   private AluguelDao() {
     super();
   }

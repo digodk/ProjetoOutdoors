@@ -6,7 +6,7 @@ import br.com.crud.dao.OutdoorDao;
  * Classe que representa o aluguel. Contém métodos estáticos para manipular todos os 
  * aluguéis e também métodos locais para manipular as instâncias.
 */
-public class AluguelBean extends Bean  {
+public class AluguelBean extends Bean {
 
   private int numDias = 1;
   private double valor = 0;
@@ -23,7 +23,6 @@ public class AluguelBean extends Bean  {
   }
 
   // Getters e Setters
-
 
   public int getNumDias() {
     return numDias;
@@ -53,7 +52,7 @@ public class AluguelBean extends Bean  {
     setNumDias(numDias);
     setObservacao(observacao);
   }
-  
+
   public void setNumDias(int numDias) {
     this.numDias = numDias;
   }

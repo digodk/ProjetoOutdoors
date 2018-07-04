@@ -40,26 +40,27 @@ public class CadastroUsuarios extends JFrame {
   // ---Procedimentos de gravação do novo Usuário
   // Valida inputs
   private static boolean dadosOk() {
-    
+
     if (!Validador.existeUsuario(nome)) {
-      Auxiliares.mensagemErro("O nome digitado já está em uso.");;
+      Auxiliares.mensagemErro("O nome digitado já está em uso.");
+      ;
       txtNome.requestFocus();
       return false;
     }
-    
+
     if (!Validador.nomeUsuario(nome)) {
-      Auxiliares.mensagemErro("Você deve digitar o nome do usuário!");;
+      Auxiliares.mensagemErro("Você deve digitar o nome do usuário!");
+      ;
       txtNome.requestFocus();
       return false;
     }
-    
+
     if (!Validador.senhaUsuario(senha)) {
       Auxiliares.mensagemErro("Você deve digitar uma senha!");
       txtSenha.requestFocus();
       return false;
     }
-    
-    
+
     if (!Validador.nivelUsuario(acesso)) {
       Auxiliares.mensagemErro("Você deve selecionar um nível de acesso!");
       cbxAcesso.requestFocus();
@@ -75,7 +76,8 @@ public class CadastroUsuarios extends JFrame {
     acesso = NiveisUsuarios.values()[cbxAcesso.getSelectedIndex()];
   }
 
-  // Salva os dados depois de checar se os inputs estão conformes. Argumento de ActionEvent para
+  // Salva os dados depois de checar se os inputs estão conformes. Argumento de
+  // ActionEvent para
   // poder ser usado como actionListener
   private static void salvarDados(ActionEvent e) {
     lerInputs();
@@ -89,7 +91,8 @@ public class CadastroUsuarios extends JFrame {
     }
   }
 
-  // ---Métodos de cadastro. É possível cadastrar um novo usuário ou editar um existente
+  // ---Métodos de cadastro. É possível cadastrar um novo usuário ou editar um
+  // existente
   public static UsuarioBean cadastrar() {
     return cadastrar(new UsuarioBean());
   }
@@ -115,7 +118,8 @@ public class CadastroUsuarios extends JFrame {
     ActionListener acaoOK = CadastroUsuarios::salvarDados;
     // Classe anônima para ação do botão cancelar
     ActionListener acaoCancelar = Auxiliares.getAcaoFecharJanela(this);
-    // Classe anônima para ação de ocultar janela. Esse evento é disparado pelo botão cancelar ou
+    // Classe anônima para ação de ocultar janela. Esse evento é disparado pelo
+    // botão cancelar ou
     // pelo botão de fechar janela.
     WindowListener listenerFecharJanela = Auxiliares.getListenerOcultarJanela(this);
 
@@ -152,38 +156,49 @@ public class CadastroUsuarios extends JFrame {
     setContentPane(contentPane);
     GroupLayout gl_contentPane = new GroupLayout(contentPane);
     gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-        .addGroup(gl_contentPane.createSequentialGroup()
-            .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                .addGroup(gl_contentPane.createSequentialGroup()
-                    .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-                        .addComponent(lblNome).addComponent(txtNome))
-                    .addGap(18)
+            .addGroup(gl_contentPane.createSequentialGroup()
                     .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                        .addComponent(txtSenha, GroupLayout.PREFERRED_SIZE, 91,
-                            GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblNewLabel)))
-                .addComponent(lblAcesso)
-                .addGroup(gl_contentPane.createSequentialGroup().addComponent(btnGravar).addGap(18)
-                    .addComponent(btnCancelar))
-                .addComponent(cbxAcesso, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addContainerGap()));
+                            .addGroup(gl_contentPane.createSequentialGroup()
+                                    .addGroup(gl_contentPane
+                                            .createParallelGroup(Alignment.LEADING, false)
+                                            .addComponent(lblNome)
+                                            .addComponent(txtNome))
+                                    .addGap(18)
+                                    .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                                            .addComponent(txtSenha, GroupLayout.PREFERRED_SIZE, 91,
+                                                    GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblNewLabel)))
+                            .addComponent(lblAcesso)
+                            .addGroup(gl_contentPane.createSequentialGroup()
+                                    .addComponent(btnGravar)
+                                    .addGap(18)
+                                    .addComponent(btnCancelar))
+                            .addComponent(cbxAcesso, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addContainerGap()));
     gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-        .addGroup(gl_contentPane.createSequentialGroup().addContainerGap()
-            .addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-                .addGroup(gl_contentPane.createSequentialGroup().addComponent(lblNome)
-                    .addPreferredGap(ComponentPlacement.RELATED).addComponent(txtNome,
-                        GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-                        GroupLayout.PREFERRED_SIZE))
-                .addGroup(gl_contentPane.createSequentialGroup().addComponent(lblNewLabel)
-                    .addPreferredGap(ComponentPlacement.RELATED).addComponent(txtSenha,
-                        GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-                        GroupLayout.PREFERRED_SIZE)))
-            .addGap(18).addComponent(lblAcesso).addPreferredGap(ComponentPlacement.RELATED)
-            .addComponent(cbxAcesso, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-                GroupLayout.PREFERRED_SIZE)
-            .addGap(23).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                .addComponent(btnGravar).addComponent(btnCancelar))
-            .addContainerGap(60, Short.MAX_VALUE)));
+            .addGroup(gl_contentPane.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+                            .addGroup(gl_contentPane.createSequentialGroup()
+                                    .addComponent(lblNome)
+                                    .addPreferredGap(ComponentPlacement.RELATED)
+                                    .addComponent(txtNome, GroupLayout.PREFERRED_SIZE,
+                                            GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                            .addGroup(gl_contentPane.createSequentialGroup()
+                                    .addComponent(lblNewLabel)
+                                    .addPreferredGap(ComponentPlacement.RELATED)
+                                    .addComponent(txtSenha, GroupLayout.PREFERRED_SIZE,
+                                            GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                    .addGap(18)
+                    .addComponent(lblAcesso)
+                    .addPreferredGap(ComponentPlacement.RELATED)
+                    .addComponent(cbxAcesso, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+                            GroupLayout.PREFERRED_SIZE)
+                    .addGap(23)
+                    .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                            .addComponent(btnGravar)
+                            .addComponent(btnCancelar))
+                    .addContainerGap(60, Short.MAX_VALUE)));
     contentPane.setLayout(gl_contentPane);
     telaCarregada = true;
   }

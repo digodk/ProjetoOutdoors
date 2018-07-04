@@ -83,7 +83,7 @@ public class OutdoorBean extends Bean {
   public void setTipo(TiposOutdoor tipo) {
     this.tipo = tipo;
   }
-  
+
   public void setTipo(int tipo) {
     setTipo(TiposOutdoor.converterTipo(tipo));
   }

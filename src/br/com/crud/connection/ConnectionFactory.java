@@ -56,8 +56,9 @@ public class ConnectionFactory {
 
     try {
       connection = DriverManager.getConnection(
-              "jdbc:mysql://" + "bits-please.c6g4ywjszepf.sa-east-1.rds.amazonaws.com" + ":" + "3306" + "/" + "bitsplease", user,
-              password);
+              "jdbc:mysql://" + "bits-please.c6g4ywjszepf.sa-east-1.rds.amazonaws.com" + ":"
+                      + "3306" + "/" + "bitsplease",
+              user, password);
     } catch (SQLException e) {
       System.out.println("Connection Failed!:\n" + e.getMessage());
     }

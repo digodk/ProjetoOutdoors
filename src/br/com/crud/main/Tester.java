@@ -1,6 +1,7 @@
 package br.com.crud.main;
 
 import br.com.crud.connection.ConnectionFactory;
+
 @SuppressWarnings("unused")
 public class Tester {
 

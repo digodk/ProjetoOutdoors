@@ -47,12 +47,12 @@ public class Auxiliares {
       }
     };
   }
-  
+
   public static void mensagemErro(String mensagem) {
-    JOptionPane.showMessageDialog(null,mensagem);
+    JOptionPane.showMessageDialog(null, mensagem);
   }
-  
+
   public static void mensagemOK(String mensagem) {
-    JOptionPane.showMessageDialog(null,mensagem);
+    JOptionPane.showMessageDialog(null, mensagem);
   }
 }

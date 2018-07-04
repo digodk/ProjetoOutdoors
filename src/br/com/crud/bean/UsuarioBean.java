@@ -7,7 +7,7 @@ public class UsuarioBean extends Bean {
     INDEFINIDO(0), FUNCIONARIO(1), GERENTE(2);
 
     private int nivel;
-    
+
     // Função que retorna o nível de acesso relativo a um inteiro
     public static NiveisUsuarios converterNivel(int nivel) {
       return Arrays.asList(NiveisUsuarios.values())
@@ -68,7 +68,7 @@ public class UsuarioBean extends Bean {
   public void setNivel(NiveisUsuarios nivel) {
     this.nivel = nivel;
   }
-  
+
   public void setNivel(int nivel) {
     setNivel(NiveisUsuarios.converterNivel(nivel));
   }
@@ -90,7 +90,7 @@ public class UsuarioBean extends Bean {
     this.senha = senha;
     this.nivel = nivel;
   }
-  
+
   public static void tester() {
     // Método de teste
   }

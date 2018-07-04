@@ -115,7 +115,7 @@ public abstract class DAO<T extends Bean> {
   // Método auxiliar que retorna uma combobox populada com a lista de beans
   // existentes.
   // Essa combobox usa como texto o descritor do Bean.
-  public JComboBox<Bean> getComboBox(){
+  public JComboBox<Bean> getComboBox() {
     List<T> lista = getLista();
     JComboBox<Bean> cbxOutdoor = new JComboBox<>();
     // Popula o combobox com os outdoors existentes
@@ -133,47 +133,51 @@ public abstract class DAO<T extends Bean> {
   public T getBean(int idBean) {
     String query = "SELECT * FROM " + nomeTabela() + " WHERE " + campoID() + " = ?";
     try {
-    PreparedStatement statement = con.prepareStatement(query);
-    statement.setInt(1, idBean);
-    ResultSet resultado = statement.executeQuery();
-    if (!resultado.next()) {
-      return null;
-    }
-    T bean = resultadoParaBean(resultado);
-    return bean;
+      PreparedStatement statement = con.prepareStatement(query);
+      statement.setInt(1, idBean);
+      ResultSet resultado = statement.executeQuery();
+      if (!resultado.next()) {
+        return null;
+      }
+      T bean = resultadoParaBean(resultado);
+      return bean;
     } catch (Exception e) {
       System.out.println("Erro ao obter instância do bean:");
       e.printStackTrace();
       return null;
     }
   }
-  
+
   // Método para checar se existe um id do bean cadastrado
   public boolean existeID(int idBean) {
     String query = "SELECT * FROM " + nomeTabela() + " WHERE " + campoID() + " = ?";
     try {
-    PreparedStatement statement = con.prepareStatement(query);
-    statement.setInt(1, idBean);
-    ResultSet resultado = statement.executeQuery();
-    return resultado.next();
+      PreparedStatement statement = con.prepareStatement(query);
+      statement.setInt(1, idBean);
+      ResultSet resultado = statement.executeQuery();
+      return resultado.next();
     } catch (Exception e) {
       System.out.println("Erro ao obter informação sobre entry do id:");
       e.printStackTrace();
       return false;
     }
   }
-  
+
   // Método privado usado para converter um resultado de query em um objeto bean
   protected abstract T resultadoParaBean(ResultSet resultado);
 
-  // Método para retornar o statement com as particularidades para cadastrar todos os dados
+  // Método para retornar o statement com as particularidades para cadastrar
+  // todos os dados
   // do bean, exceto id
   protected abstract PreparedStatement statementCadastro(String query, T bean);
-  
+
   // Métodos para retornar os parâmetros particulares de cada DAO
   protected abstract String nomeTabela();
+
   protected abstract String camposCadastro();
+
   protected abstract String camposAlteracao();
+
   protected abstract String campoID();
 
 }

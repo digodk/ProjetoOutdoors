@@ -72,7 +72,8 @@ public class CadastroAlugueis extends JDialog {
     observacao = txtObservacoes.getText();
   }
 
-  // Salva os dados depois de checar se os inputs estão conformes. Argumento de ActionEvent para
+  // Salva os dados depois de checar se os inputs estão conformes. Argumento de
+  // ActionEvent para
   // poder ser usado como actionListener
   private static void salvarDados(ActionEvent e) {
     lerInputs();
@@ -87,7 +88,8 @@ public class CadastroAlugueis extends JDialog {
     }
   }
 
-  // ---Métodos de cadastro. É possível cadastrar um novo aluguel ou editar um existente
+  // ---Métodos de cadastro. É possível cadastrar um novo aluguel ou editar um
+  // existente
   public static AluguelBean cadastrar() {
     return cadastrar(new AluguelBean());
   }
@@ -102,7 +104,8 @@ public class CadastroAlugueis extends JDialog {
     }
     txtDias.setValue(alu.getNumDias());
     txtValor.setText(String.format("R$ %.2f", alu.getValor()));
-    int index = alu.getOutdoor() == null ? 0 : OutdoorDao.inst().getLista().indexOf(alu.getOutdoor());
+    int index =
+            alu.getOutdoor() == null ? 0 : OutdoorDao.inst().getLista().indexOf(alu.getOutdoor());
     cbxOutdoor.setSelectedIndex(index);
     aluguelEmCadastro = alu;
     aluguelCadastrado = null;
@@ -118,7 +121,8 @@ public class CadastroAlugueis extends JDialog {
     ActionListener acaoOk = CadastroAlugueis::salvarDados;
     // Classe anônima para ação do botão cancelar
     ActionListener acaoCancelar = Auxiliares.getAcaoFecharJanela(this);
-    // Classe anônima para ação de ocultar janela. Esse evento é disparado pelo botão cancelar ou
+    // Classe anônima para ação de ocultar janela. Esse evento é disparado pelo
+    // botão cancelar ou
     // pelo botão de fechar janela.
     WindowListener listenerFecharJanela = Auxiliares.getListenerOcultarJanela(this);
 
@@ -160,49 +164,62 @@ public class CadastroAlugueis extends JDialog {
     setContentPane(contentPane);
     GroupLayout gl_contentPane = new GroupLayout(contentPane);
     gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-        .addGroup(gl_contentPane.createSequentialGroup().addContainerGap().addGroup(gl_contentPane
-            .createParallelGroup(Alignment.LEADING)
-            .addComponent(cbxOutdoor, 0, 280, Short.MAX_VALUE)
-            .addComponent(lblOutdoor, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)
             .addGroup(gl_contentPane.createSequentialGroup()
-                .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-                    .addComponent(lblValorDeAluguel, GroupLayout.DEFAULT_SIZE,
-                        GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtValor, 0, 0, Short.MAX_VALUE))
-                .addGap(18)
-                .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                    .addComponent(txtDias, GroupLayout.PREFERRED_SIZE, 63,
-                        GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblDias))
-                .addGap(20))
-            .addGroup(gl_contentPane.createSequentialGroup()
-                .addComponent(btnCadastrar, GroupLayout.PREFERRED_SIZE, 82,
-                    GroupLayout.PREFERRED_SIZE)
-                .addGap(18).addComponent(btnCancelar))
-            .addComponent(lblObservaes)
-            .addComponent(txtObservacoes, GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE))
-            .addContainerGap()));
+                    .addContainerGap()
+                    .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                            .addComponent(cbxOutdoor, 0, 280, Short.MAX_VALUE)
+                            .addComponent(lblOutdoor, GroupLayout.PREFERRED_SIZE, 85,
+                                    GroupLayout.PREFERRED_SIZE)
+                            .addGroup(gl_contentPane.createSequentialGroup()
+                                    .addGroup(gl_contentPane
+                                            .createParallelGroup(Alignment.LEADING, false)
+                                            .addComponent(lblValorDeAluguel,
+                                                    GroupLayout.DEFAULT_SIZE,
+                                                    GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(txtValor, 0, 0, Short.MAX_VALUE))
+                                    .addGap(18)
+                                    .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                                            .addComponent(txtDias, GroupLayout.PREFERRED_SIZE, 63,
+                                                    GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblDias))
+                                    .addGap(20))
+                            .addGroup(gl_contentPane.createSequentialGroup()
+                                    .addComponent(btnCadastrar, GroupLayout.PREFERRED_SIZE, 82,
+                                            GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18)
+                                    .addComponent(btnCancelar))
+                            .addComponent(lblObservaes)
+                            .addComponent(txtObservacoes, GroupLayout.DEFAULT_SIZE, 280,
+                                    Short.MAX_VALUE))
+                    .addContainerGap()));
     gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-        .addGroup(gl_contentPane.createSequentialGroup()
-            .addComponent(lblOutdoor, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(ComponentPlacement.RELATED)
-            .addComponent(cbxOutdoor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-                GroupLayout.PREFERRED_SIZE)
-            .addGap(18)
-            .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                .addGroup(gl_contentPane.createSequentialGroup().addComponent(lblValorDeAluguel)
-                    .addPreferredGap(ComponentPlacement.RELATED).addComponent(txtValor,
-                        GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-                        GroupLayout.PREFERRED_SIZE))
-                .addGroup(gl_contentPane.createSequentialGroup().addComponent(lblDias)
-                    .addPreferredGap(ComponentPlacement.RELATED).addComponent(txtDias,
-                        GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-                        GroupLayout.PREFERRED_SIZE)))
-            .addPreferredGap(ComponentPlacement.UNRELATED).addComponent(lblObservaes)
-            .addPreferredGap(ComponentPlacement.RELATED).addComponent(txtObservacoes).addGap(79)
-            .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                .addComponent(btnCadastrar).addComponent(btnCancelar))
-            .addContainerGap()));
+            .addGroup(gl_contentPane.createSequentialGroup()
+                    .addComponent(lblOutdoor, GroupLayout.PREFERRED_SIZE, 22,
+                            GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(ComponentPlacement.RELATED)
+                    .addComponent(cbxOutdoor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+                            GroupLayout.PREFERRED_SIZE)
+                    .addGap(18)
+                    .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                            .addGroup(gl_contentPane.createSequentialGroup()
+                                    .addComponent(lblValorDeAluguel)
+                                    .addPreferredGap(ComponentPlacement.RELATED)
+                                    .addComponent(txtValor, GroupLayout.PREFERRED_SIZE,
+                                            GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                            .addGroup(gl_contentPane.createSequentialGroup()
+                                    .addComponent(lblDias)
+                                    .addPreferredGap(ComponentPlacement.RELATED)
+                                    .addComponent(txtDias, GroupLayout.PREFERRED_SIZE,
+                                            GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                    .addPreferredGap(ComponentPlacement.UNRELATED)
+                    .addComponent(lblObservaes)
+                    .addPreferredGap(ComponentPlacement.RELATED)
+                    .addComponent(txtObservacoes)
+                    .addGap(79)
+                    .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                            .addComponent(btnCadastrar)
+                            .addComponent(btnCancelar))
+                    .addContainerGap()));
     contentPane.setLayout(gl_contentPane);
     telaCarregada = true;
   }
