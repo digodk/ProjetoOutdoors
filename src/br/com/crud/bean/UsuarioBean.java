@@ -3,10 +3,17 @@ package br.com.crud.bean;
 import java.util.Arrays;
 
 /**
- * @author 105004
+ * @author Diogo
  * Classe que representa um usuário. Usada para estruturar os dados.
  */
 public class UsuarioBean extends Bean {
+  
+  
+  /**
+   * @author Diogo
+   * Enum usado para classificar o nível de usuário.
+   * É associado um valor inteiro para armazenamento no banco de dados
+   */
   public enum NiveisUsuarios {
     INDEFINIDO(0), FUNCIONARIO(1), GERENTE(2);
 
@@ -90,17 +97,22 @@ public class UsuarioBean extends Bean {
     this.senha = senha;
   }
 
+  /**
+   * Construtor padrão
+   */
   public UsuarioBean() {
 
   }
 
+  /**
+   * Construtor com os parâmetros setados
+   * @param nome nome do usuário
+   * @param senha senha do usuário
+   * @param nivel nível de acesso do usuário
+   */
   public UsuarioBean(String nome, String senha, NiveisUsuarios nivel) {
     this.nome = nome;
     this.senha = senha;
     this.nivel = nivel;
-  }
-
-  public static void tester() {
-    // Método de teste
   }
 }
