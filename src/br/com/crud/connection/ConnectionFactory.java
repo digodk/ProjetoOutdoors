@@ -4,15 +4,22 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * @author Diogo
+ * Classe efetivamente estática que retorna uma conexão para o banco de dados
+ */
 public class ConnectionFactory {
 
   // Constantes para acessar o banco de dados
   private static final String urlBD =
-          "jdbc:mysql:/bits-please.c6g4ywjszepf.sa-east-1.rds.amazonaws.com:3306";
+          "jdbc:mysql://bits-please.c6g4ywjszepf.sa-east-1.rds.amazonaws.com:3306/bitsplease";
   private static final String user = "digodk";
   private static final String password = "dDK1,A0573551";
 
-  // Método para retornar a conexão com o banco de dados
+  /**
+   * Método para retornar a conexão com o banco de dados
+   * @return Uma instância da conexão com o banco de dados se ela foi bem sucedida, caso contrário retorna null.
+   */
   public static Conexao obterConexao() {
 
     // Variável para retornar a conexão
@@ -29,17 +36,8 @@ public class ConnectionFactory {
     return conexao;
   }
 
-  public static void tester() {
-    try {
-      ConnectionFactory.connectJDBCToAWSEC2();
-      System.out.println("Conexão com BD realizada com sucesso");
-    } catch (Exception e) {
-      System.out.println("Erro ao estabelecer a conexão");
-      e.printStackTrace();
-    }
-  }
-
-  public static void connectJDBCToAWSEC2() {
+  @SuppressWarnings("unused")
+  private static void exemploConexao() {
 
     System.out.println("----MySQL JDBC Connection Testing -------");
 
