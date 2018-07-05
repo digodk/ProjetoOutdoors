@@ -1,7 +1,7 @@
 package br.com.crud.bean;
 
 /**
- * @author 105004 Classe abstrata para todos os Beans de dados. Abstrai a
+ * @author Diogo Classe abstrata para todos os Beans de dados. Abstrai a
  *         propriedade ID e contém um método abstrato para gerar uma descrição
  *         da instância Esse método é usado para gerar as comboboxes
  */
@@ -32,5 +32,6 @@ public abstract class Bean {
    * 
    * @return Um valor string que descreve o objeto
    */
+  
   abstract public String getDescricao();
 }

@@ -4,10 +4,12 @@ import br.com.crud.dao.OutdoorDao;
 
 /**
  * 
- * @author 105004 * Classe que representa o aluguel. Contém métodos estáticos
+ * @author Diogo Classe que representa o aluguel. Contém métodos estáticos
  *         para manipular todos os aluguéis e também métodos locais para
  *         manipular as instâncias.
  */
+
+
 public class AluguelBean extends Bean {
 
   private int numDias = 1;

@@ -5,13 +5,13 @@ import java.util.Arrays;
 import br.com.crud.view.Auxiliares;
 
 /**
- * @author 105004 Classe que representa o outdoor. Contém métodos estáticos para
+ * @author Diogo Classe que representa o outdoor. Contém métodos estáticos para
  *         manipular todos os aluguéis e também métodos locais para manipular as
  *         instâncias.
  */
 public class OutdoorBean extends Bean {
   /**
-   * @author 105004 Enum para os tipos de outdoor. Contém um valor
+   * @author Diogo Enum para os tipos de outdoor. Contém um valor
    *         autodescritivo para exibiçãoem menus.
    */
   public enum TiposOutdoor {
