@@ -5,6 +5,11 @@ import java.sql.ResultSet;
 
 import br.com.crud.bean.UsuarioBean;
 
+/**
+ * @author Diogo
+ * DAO referente à classe de Usuários
+ * Segue o pattern singleton, a instância é acessada pelo método inst()
+ */
 public class UsuarioDao extends DAO<UsuarioBean> {
 
   private static UsuarioDao instancia = new UsuarioDao();
@@ -14,6 +19,11 @@ public class UsuarioDao extends DAO<UsuarioBean> {
     return instancia;
   }
 
+  /**
+   * Método adicional da classe usuários para retornar um usuário pelo nome
+   * @param nome nome do usuário
+   * @return um Objeto UsuarioBean se o nome está cadastro, senão null
+   */
   public UsuarioBean getUsuario(String nome) {
     String query = "SELECT * FROM " + nomeTabela() + " WHERE " + campoNome + " = ?";
     try {
