@@ -2,29 +2,38 @@ package br.com.crud.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
 import br.com.crud.bean.UsuarioBean;
 
+/**
+ * @author Diogo DAO referente à classe de Usuários Segue o pattern singleton, a instância é
+ *         acessada pelo método inst()
+ */
 public class UsuarioDao extends DAO<UsuarioBean> {
-  
+
   private static UsuarioDao instancia = new UsuarioDao();
   private String campoNome = "nomeUsuario";
 
   public static UsuarioDao inst() {
     return instancia;
   }
-  
+
+  /**
+   * Método adicional da classe usuários para retornar um usuário pelo nome
+   * 
+   * @param nome nome do usuário
+   * @return um Objeto UsuarioBean se o nome está cadastro, senão null
+   */
   public UsuarioBean getUsuario(String nome) {
     String query = "SELECT * FROM " + nomeTabela() + " WHERE " + campoNome + " = ?";
     try {
-    PreparedStatement statement = con.prepareStatement(query);
-    statement.setString(1, nome);
-    ResultSet resultado = statement.executeQuery();
-    if (!resultado.next()) {
-      return null;
-    }
-    UsuarioBean bean = resultadoParaBean(resultado);
-    return bean;
+      PreparedStatement statement = con.prepareStatement(query);
+      statement.setString(1, nome);
+      ResultSet resultado = statement.executeQuery();
+      if (!resultado.next()) {
+        return null;
+      }
+      UsuarioBean bean = resultadoParaBean(resultado);
+      return bean;
     } catch (Exception e) {
       System.out.println("Erro ao obter instância do usuario através do nome:");
       e.printStackTrace();
@@ -80,7 +89,7 @@ public class UsuarioDao extends DAO<UsuarioBean> {
   protected String campoID() {
     return "idUsuario";
   }
-  
+
   private UsuarioDao() {
     super();
   }

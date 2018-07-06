@@ -2,11 +2,14 @@ package br.com.crud.bean;
 
 import br.com.crud.dao.OutdoorDao;
 
-/*
- * Classe que representa o aluguel. Contém métodos estáticos para manipular todos os 
- * aluguéis e também métodos locais para manipular as instâncias.
-*/
-public class AluguelBean extends Bean  {
+/**
+ * 
+ * @author Diogo Classe que representa o aluguel. Contém métodos estáticos para manipular todos os
+ *         aluguéis e também métodos locais para manipular as instâncias.
+ */
+
+
+public class AluguelBean extends Bean {
 
   private int numDias = 1;
   private double valor = 0;
@@ -14,16 +17,12 @@ public class AluguelBean extends Bean  {
   private int idOutdoor = 0;
   private OutdoorBean out = null;
 
-  // Método herdado da classe abstrata de dados. Fornece uma descrição do objeto
-  // para ser colocada nas combobox
-  // TODO Corrigir get do outdoor associado com o aluguel usando a classe DAO
   @Override
   public String getDescricao() {
     return numDias + "-" + String.format("R$ %.2f", valor) + ":" + out.getDescricao();
   }
 
   // Getters e Setters
-
 
   public int getNumDias() {
     return numDias;
@@ -33,27 +32,43 @@ public class AluguelBean extends Bean  {
     return observacao;
   }
 
-  // Retorna o outdoor associado com esse aluguel
+
+  /**
+   * @return objeto outdoor associado a esse aluguel
+   */
   public OutdoorBean getOutdoor() {
     return out;
   }
 
+  /**
+   * @return o valor int do objeto outdoor associado a esse aluguel
+   */
   public int getIDOutdoor() {
     return idOutdoor;
   }
 
+  /**
+   * @return o valor do aluguel (em R$)
+   */
   public double getValor() {
     return valor;
   }
 
-  // Grava um conjunto de dados em uma instância
+  /**
+   * Usado para gravar vários dados de uma vez em uma instância
+   * 
+   * @param numDias número de dias de duração do aluguel
+   * @param valor valor do aluguel (em R$)
+   * @param observacao String de observação do aluguel
+   * @param idOutdoor valor int com id do outdoor associado
+   */
   public void gravarDados(int numDias, double valor, String observacao, int idOutdoor) {
     setValor(valor);
     setOutdoor(idOutdoor);
     setNumDias(numDias);
     setObservacao(observacao);
   }
-  
+
   public void setNumDias(int numDias) {
     this.numDias = numDias;
   }
@@ -71,17 +86,21 @@ public class AluguelBean extends Bean  {
     this.valor = valor;
   }
 
-  // Construtor usado para um novo aluguel
+  /**
+   * Construtor com a opção de colocar todos os parâmetros do aluguel
+   * 
+   * @param numDias número de dias de duração do aluguel
+   * @param valor valor do aluguel (em R$)
+   * @param observacao String de observação do aluguel
+   * @param idOutdoor valor int com id do outdoor associado
+   */
   public AluguelBean(int numDias, double valor, String observacao, int idOutdoor) {
     gravarDados(numDias, valor, observacao, idOutdoor);
   }
 
-  // Construtor público genérico
-  public AluguelBean() {
-  }
 
-  public static void tester() {
-
-  }
-
+  /**
+   * Construtor genérico
+   */
+  public AluguelBean() {}
 }

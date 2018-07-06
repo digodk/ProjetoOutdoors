@@ -14,11 +14,13 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
-
 import br.com.crud.bean.UsuarioBean;
 import br.com.crud.bean.UsuarioBean.NiveisUsuarios;
 import br.com.crud.dao.UsuarioDao;
 
+/**
+ * @author Diogo Tela de cadastro e edição de usuários
+ */
 @SuppressWarnings("serial")
 public class CadastroUsuarios extends JFrame {
 
@@ -39,26 +41,25 @@ public class CadastroUsuarios extends JFrame {
   // ---Procedimentos de gravação do novo Usuário
   // Valida inputs
   private static boolean dadosOk() {
-    
+
     if (!Validador.existeUsuario(nome)) {
       Auxiliares.mensagemErro("O nome digitado já está em uso.");;
       txtNome.requestFocus();
       return false;
     }
-    
+
     if (!Validador.nomeUsuario(nome)) {
       Auxiliares.mensagemErro("Você deve digitar o nome do usuário!");;
       txtNome.requestFocus();
       return false;
     }
-    
+
     if (!Validador.senhaUsuario(senha)) {
       Auxiliares.mensagemErro("Você deve digitar uma senha!");
       txtSenha.requestFocus();
       return false;
     }
-    
-    
+
     if (!Validador.nivelUsuario(acesso)) {
       Auxiliares.mensagemErro("Você deve selecionar um nível de acesso!");
       cbxAcesso.requestFocus();
@@ -74,7 +75,8 @@ public class CadastroUsuarios extends JFrame {
     acesso = NiveisUsuarios.values()[cbxAcesso.getSelectedIndex()];
   }
 
-  // Salva os dados depois de checar se os inputs estão conformes. Argumento de ActionEvent para
+  // Salva os dados depois de checar se os inputs estão conformes. Argumento de
+  // ActionEvent para
   // poder ser usado como actionListener
   private static void salvarDados(ActionEvent e) {
     lerInputs();
@@ -88,11 +90,24 @@ public class CadastroUsuarios extends JFrame {
     }
   }
 
-  // ---Métodos de cadastro. É possível cadastrar um novo usuário ou editar um existente
+  // ---Métodos de cadastro. É possível cadastrar um novo usuário ou editar um
+  // existente
+
+  /**
+   * Cadastrar um novo usuario
+   * 
+   * @return o objeto UsuarioBean se o cadastro foi bem sucedido, senão null
+   */
   public static UsuarioBean cadastrar() {
     return cadastrar(new UsuarioBean());
   }
 
+  /**
+   * Editar um usuario existente. A tela é carregada com os valores do usuario
+   * 
+   * @param usuario o usuario a ser editado
+   * @return o UsuarioBean editado
+   */
   public static UsuarioBean cadastrar(UsuarioBean usuario) {
     usuarioEmCadastro = usuario;
     if (!telaCarregada) {
@@ -114,7 +129,8 @@ public class CadastroUsuarios extends JFrame {
     ActionListener acaoOK = CadastroUsuarios::salvarDados;
     // Classe anônima para ação do botão cancelar
     ActionListener acaoCancelar = Auxiliares.getAcaoFecharJanela(this);
-    // Classe anônima para ação de ocultar janela. Esse evento é disparado pelo botão cancelar ou
+    // Classe anônima para ação de ocultar janela. Esse evento é disparado pelo
+    // botão cancelar ou
     // pelo botão de fechar janela.
     WindowListener listenerFecharJanela = Auxiliares.getListenerOcultarJanela(this);
 

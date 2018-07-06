@@ -1,13 +1,15 @@
 package br.com.crud.view;
 
 import java.awt.Component;
-
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
-
 import br.com.crud.bean.Bean;
 
+/**
+ * @author Diogo Classe que extende um ListCellRenderer, usada para preencher a JComboBox com a
+ *         descrição dos objetos contidos nela.
+ */
 @SuppressWarnings("serial")
 public class DescritorComboBox extends JLabel implements ListCellRenderer<Bean> {
 
@@ -28,7 +30,5 @@ public class DescritorComboBox extends JLabel implements ListCellRenderer<Bean> 
 
     return this;
   }
-
-
 
 }

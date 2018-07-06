@@ -10,10 +10,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
-
 import br.com.crud.bean.UsuarioBean;
 import br.com.crud.bean.UsuarioBean.NiveisUsuarios;
 
+/**
+ * @author Diogo Tela principal para seleção de ações do usuário
+ */
 @SuppressWarnings("serial")
 public class TelaPrincipal extends JDialog {
 
@@ -22,6 +24,11 @@ public class TelaPrincipal extends JDialog {
   private static JPanel panelAdmin;
   private static boolean telaCarregada = false;
 
+  /**
+   * Carrega o menu de opções. O nível de acesso do usuário determina os recursos a serem carregados
+   * 
+   * @param usuario o usuario logado no sistema
+   */
   public static void exibir(UsuarioBean usuario) {
     if (!telaCarregada) {
       try {
@@ -35,7 +42,7 @@ public class TelaPrincipal extends JDialog {
     frame.setVisible(true);
   }
 
-  public TelaPrincipal() {
+  private TelaPrincipal() {
     setTitle("Cadastro de Outdoors e Aluguéis");
     setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
     setBounds(100, 100, 349, 302);
@@ -103,7 +110,7 @@ public class TelaPrincipal extends JDialog {
       @Override
       public void actionPerformed(ActionEvent e) {
         Login.logar();
-        panelAdmin.setVisible(UsuarioBean.getUsuarioAtivo().getNivel()==NiveisUsuarios.GERENTE);
+        panelAdmin.setVisible(UsuarioBean.getUsuarioAtivo().getNivel() == NiveisUsuarios.GERENTE);
       }
     });
 

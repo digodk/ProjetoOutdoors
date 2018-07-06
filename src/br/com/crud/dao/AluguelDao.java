@@ -2,13 +2,21 @@ package br.com.crud.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
 import br.com.crud.bean.AluguelBean;
 
+/**
+ * @author Diogo DAO referente à classe de alugueis Segue o pattern singleton, a instância é
+ *         acessada pelo método inst()
+ */
 public class AluguelDao extends DAO<AluguelBean> {
 
   private static AluguelDao instancia = new AluguelDao();
 
+  /**
+   * Usada para acessar a instância única da classe
+   * 
+   * @return a instância estática do DAO para acesso aos métodos
+   */
   public static AluguelDao inst() {
     return instancia;
   }
@@ -63,7 +71,7 @@ public class AluguelDao extends DAO<AluguelBean> {
   protected String campoID() {
     return "idAluguel";
   }
-  
+
   private AluguelDao() {
     super();
   }

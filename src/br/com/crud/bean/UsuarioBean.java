@@ -2,19 +2,31 @@ package br.com.crud.bean;
 
 import java.util.Arrays;
 
+/**
+ * @author Diogo Classe que representa um usuário. Usada para estruturar os dados.
+ */
 public class UsuarioBean extends Bean {
+
+
+  /**
+   * @author Diogo Enum usado para classificar o nível de usuário. É associado um valor inteiro para
+   *         armazenamento no banco de dados
+   */
   public enum NiveisUsuarios {
     INDEFINIDO(0), FUNCIONARIO(1), GERENTE(2);
 
     private int nivel;
-    
-    // Função que retorna o nível de acesso relativo a um inteiro
+
+
+    /**
+     * Converte um número inteiro em um nível de usuário. Números inválidos retornam INDEFINIDO
+     * 
+     * @param nivel valor inteiro que represent o nível do usuário
+     * @return o NiveisUsuarios do usuário
+     */
     public static NiveisUsuarios converterNivel(int nivel) {
-      return Arrays.asList(NiveisUsuarios.values())
-              .stream()
-              .filter(v -> v.toInt() == nivel)
-              .findFirst()
-              .orElse(INDEFINIDO);
+      return Arrays.asList(NiveisUsuarios.values()).stream().filter(v -> v.toInt() == nivel)
+          .findFirst().orElse(INDEFINIDO);
     }
 
     public int toInt() {
@@ -68,7 +80,7 @@ public class UsuarioBean extends Bean {
   public void setNivel(NiveisUsuarios nivel) {
     this.nivel = nivel;
   }
-  
+
   public void setNivel(int nivel) {
     setNivel(NiveisUsuarios.converterNivel(nivel));
   }
@@ -81,17 +93,23 @@ public class UsuarioBean extends Bean {
     this.senha = senha;
   }
 
+  /**
+   * Construtor padrão
+   */
   public UsuarioBean() {
 
   }
 
+  /**
+   * Construtor com os parâmetros setados
+   * 
+   * @param nome nome do usuário
+   * @param senha senha do usuário
+   * @param nivel nível de acesso do usuário
+   */
   public UsuarioBean(String nome, String senha, NiveisUsuarios nivel) {
     this.nome = nome;
     this.senha = senha;
     this.nivel = nivel;
-  }
-  
-  public static void tester() {
-    // Método de teste
   }
 }

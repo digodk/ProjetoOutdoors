@@ -19,13 +19,15 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
-
 import br.com.crud.bean.AluguelBean;
 import br.com.crud.bean.Bean;
 import br.com.crud.bean.OutdoorBean;
 import br.com.crud.dao.AluguelDao;
 import br.com.crud.dao.OutdoorDao;
 
+/**
+ * @author Diogo Tela de cadastro e edição de alugueis
+ */
 @SuppressWarnings("serial")
 public class CadastroAlugueis extends JDialog {
 
@@ -71,7 +73,8 @@ public class CadastroAlugueis extends JDialog {
     observacao = txtObservacoes.getText();
   }
 
-  // Salva os dados depois de checar se os inputs estão conformes. Argumento de ActionEvent para
+  // Salva os dados depois de checar se os inputs estão conformes. Argumento de
+  // ActionEvent para
   // poder ser usado como actionListener
   private static void salvarDados(ActionEvent e) {
     lerInputs();
@@ -86,11 +89,23 @@ public class CadastroAlugueis extends JDialog {
     }
   }
 
-  // ---Métodos de cadastro. É possível cadastrar um novo aluguel ou editar um existente
+  // ---Métodos de cadastro. É possível cadastrar um novo aluguel ou editar um
+  // existente
+  /**
+   * Cadastrar um novo aluguel
+   * 
+   * @return o objeto AluguelBean se o cadastro foi bem sucedido, senão null
+   */
   public static AluguelBean cadastrar() {
     return cadastrar(new AluguelBean());
   }
 
+  /**
+   * Editar um aluguel existente. A tela é carregada com os valores do aluguel
+   * 
+   * @param alu o aluguel a ser editado
+   * @return o AluguelBean editado
+   */
   public static AluguelBean cadastrar(AluguelBean alu) {
     if (!telaCarregada) {
       try {
@@ -101,7 +116,8 @@ public class CadastroAlugueis extends JDialog {
     }
     txtDias.setValue(alu.getNumDias());
     txtValor.setText(String.format("R$ %.2f", alu.getValor()));
-    int index = alu.getOutdoor() == null ? 0 : OutdoorDao.inst().getLista().indexOf(alu.getOutdoor());
+    int index =
+        alu.getOutdoor() == null ? 0 : OutdoorDao.inst().getLista().indexOf(alu.getOutdoor());
     cbxOutdoor.setSelectedIndex(index);
     aluguelEmCadastro = alu;
     aluguelCadastrado = null;
@@ -117,7 +133,8 @@ public class CadastroAlugueis extends JDialog {
     ActionListener acaoOk = CadastroAlugueis::salvarDados;
     // Classe anônima para ação do botão cancelar
     ActionListener acaoCancelar = Auxiliares.getAcaoFecharJanela(this);
-    // Classe anônima para ação de ocultar janela. Esse evento é disparado pelo botão cancelar ou
+    // Classe anônima para ação de ocultar janela. Esse evento é disparado pelo
+    // botão cancelar ou
     // pelo botão de fechar janela.
     WindowListener listenerFecharJanela = Auxiliares.getListenerOcultarJanela(this);
 

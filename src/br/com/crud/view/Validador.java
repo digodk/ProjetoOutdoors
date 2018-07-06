@@ -8,6 +8,9 @@ import br.com.crud.dao.AluguelDao;
 import br.com.crud.dao.OutdoorDao;
 import br.com.crud.dao.UsuarioDao;
 
+/**
+ * @author Diogo Classe de validadores de dados para inputs do usuário
+ */
 public class Validador {
   // Métodos que checam se existe no BD o ID informado. Usa o procedimento da
   // classe DAO
@@ -22,10 +25,10 @@ public class Validador {
   public static boolean existeUsuario(int idUsuario) {
     return UsuarioDao.inst().existeID(idUsuario);
   }
-  
+
   public static boolean existeUsuario(String nome) {
     UsuarioBean usu = UsuarioDao.inst().getUsuario(nome);
-    return !(usu==null);
+    return !(usu == null);
   }
 
   public static boolean existeUsuario(UsuarioBean usu) {
@@ -43,27 +46,27 @@ public class Validador {
   public static boolean numDias(int numDias) {
     return numDias > 0;
   }
-  
+
   public static boolean valorAluguel(double valor) {
-    return valor >=0;
+    return valor >= 0;
   }
-  
+
   public static boolean nomeUsuario(String nome) {
     return !("".equals(nome));
   }
-  
+
   public static boolean senhaUsuario(String senha) {
     return !("".equals(senha));
   }
-  
+
   public static boolean nivelUsuario(NiveisUsuarios acesso) {
     return !acesso.equals(NiveisUsuarios.INDEFINIDO);
   }
-  
+
   public static boolean cidade(String cidade) {
     return !"".equals(cidade);
   }
-  
+
   public static boolean endereco(String endereco) {
     return !"".equals(endereco);
   }

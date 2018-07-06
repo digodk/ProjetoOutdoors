@@ -3,7 +3,6 @@ package br.com.crud.view;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowListener;
-
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
@@ -13,11 +12,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import br.com.crud.bean.AluguelBean;
 import br.com.crud.bean.Bean;
 import br.com.crud.dao.AluguelDao;
 
+/**
+ * @author Diogo Tela de seleção do aluguel a ser editado ou deletado.
+ */
 @SuppressWarnings("serial")
 public class SelecionarAluguel extends JDialog {
 
@@ -28,7 +29,9 @@ public class SelecionarAluguel extends JDialog {
   private static boolean telaCarregada;
 
   /**
-   * Launch the application.
+   * Abre a tela de seleção de aluguel
+   * 
+   * @return AluguelBean dos dados editados
    */
   public static AluguelBean selecionar() {
     if (!telaCarregada) {
@@ -52,13 +55,14 @@ public class SelecionarAluguel extends JDialog {
     Auxiliares.dispararEventoFecharJanela(frame);
   }
 
-  public SelecionarAluguel() {
+  private SelecionarAluguel() {
 
     // ---Configuração de listeners
     ActionListener acaoOK = SelecionarAluguel::editarDados;
     // Classe anônima para ação do botão cancelar
     ActionListener acaoCancelar = Auxiliares.getAcaoFecharJanela(this);
-    // Classe anônima para ação de ocultar janela. Esse evento é disparado pelo botão cancelar ou
+    // Classe anônima para ação de ocultar janela. Esse evento é disparado pelo
+    // botão cancelar ou
     // pelo botão de fechar janela.
     WindowListener listenerFecharJanela = Auxiliares.getListenerOcultarJanela(this);
     // ---Labels e controles

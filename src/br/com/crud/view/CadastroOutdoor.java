@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowListener;
 import java.util.Arrays;
-
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
@@ -19,11 +18,13 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
-
 import br.com.crud.bean.OutdoorBean;
 import br.com.crud.bean.OutdoorBean.TiposOutdoor;
 import br.com.crud.dao.OutdoorDao;
 
+/**
+ * @author Diogo Tela de cadastro e edição de outdoors
+ */
 @SuppressWarnings("serial")
 public class CadastroOutdoor extends JDialog {
 
@@ -60,7 +61,8 @@ public class CadastroOutdoor extends JDialog {
     tipo = TiposOutdoor.values()[cbxTipoOutdoor.getSelectedIndex()];
   }
 
-  // Salva os dados depois de checar se os inputs estão conformes. Argumento de ActionEvent para
+  // Salva os dados depois de checar se os inputs estão conformes. Argumento de
+  // ActionEvent para
   // poder ser usado como actionListener
   private static void salvarDados(ActionEvent e) {
     lerInputs();
@@ -74,11 +76,23 @@ public class CadastroOutdoor extends JDialog {
     }
   }
 
+  // ---Métodos de cadastro. É possível cadastrar um novo outdoor ou editar um
+  // existente
+  /**
+   * Cadastrar um novo outdoor
+   * 
+   * @return o objeto OutdoorBean se o cadastro foi bem sucedido, senão null
+   */
   public static OutdoorBean cadastrar() {
     return cadastrar(new OutdoorBean());
   }
 
-  // ---Métodos de cadastro. É possível cadastrar um novo outdoor ou editar um existente
+  /**
+   * Editar um outdoor existente. A tela é carregada com os valores do outdoor
+   * 
+   * @param out o outdoor a ser editado
+   * @return o OutdoorBean editado
+   */
   public static OutdoorBean cadastrar(OutdoorBean out) {
     if (!telaCarregada) {
       try {
@@ -92,7 +106,7 @@ public class CadastroOutdoor extends JDialog {
     txtEndereco.setText(out.getEndereco());
     int index = Arrays.asList(TiposOutdoor.values()).indexOf(out.getTipo());
     cbxTipoOutdoor.setSelectedIndex(index);
-    
+
     frame.setVisible(true);
 
     return outdoorCadastrado;
@@ -105,7 +119,8 @@ public class CadastroOutdoor extends JDialog {
     ActionListener acaoOK = CadastroOutdoor::salvarDados;
     // Classe anônima para ação do botão cancelar
     ActionListener acaoCancelar = Auxiliares.getAcaoFecharJanela(this);
-    // Classe anônima para ação de ocultar janela. Esse evento é disparado pelo botão cancelar ou
+    // Classe anônima para ação de ocultar janela. Esse evento é disparado pelo
+    // botão cancelar ou
     // pelo botão de fechar janela.
     WindowListener listenerFecharJanela = Auxiliares.getListenerOcultarJanela(this);
 

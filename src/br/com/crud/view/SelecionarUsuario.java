@@ -3,7 +3,6 @@ package br.com.crud.view;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowListener;
-
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
@@ -13,11 +12,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import br.com.crud.bean.Bean;
 import br.com.crud.bean.UsuarioBean;
 import br.com.crud.dao.UsuarioDao;
 
+/**
+ * @author Diogo Tela de seleção do usuário a ser editado ou deletado.
+ */
 @SuppressWarnings("serial")
 public class SelecionarUsuario extends JDialog {
 
@@ -25,8 +26,13 @@ public class SelecionarUsuario extends JDialog {
   private static UsuarioBean usuarioEditado;
   private static JComboBox<Bean> cbsUsuario;
   private static JPanel contentPane;
-  private static boolean telaCarregada=false;
+  private static boolean telaCarregada = false;
 
+  /**
+   * Abre a tela de seleção de usuario
+   * 
+   * @return UsuarioBean dos dados editados
+   */
   public static UsuarioBean selecionar() {
     if (!telaCarregada) {
       try {
@@ -54,7 +60,8 @@ public class SelecionarUsuario extends JDialog {
     ActionListener acaoOK = SelecionarUsuario::editarDados;
     // Classe anônima para ação do botão cancelar
     ActionListener acaoCancelar = Auxiliares.getAcaoFecharJanela(this);
-    // Classe anônima para ação de ocultar janela. Esse evento é disparado pelo botão cancelar ou
+    // Classe anônima para ação de ocultar janela. Esse evento é disparado pelo
+    // botão cancelar ou
     // pelo botão de fechar janela.
     WindowListener listenerFecharJanela = Auxiliares.getListenerOcultarJanela(this);
     // ---Labels e controles
