@@ -105,7 +105,7 @@ public class CadastroUsuarios extends JFrame {
   /**
    * Editar um usuario existente. A tela é carregada com os valores do usuario
    * 
-   * @param out o usuario a ser editado
+   * @param usuario o usuario a ser editado
    * @return o UsuarioBean editado
    */
   public static UsuarioBean cadastrar(UsuarioBean usuario) {
