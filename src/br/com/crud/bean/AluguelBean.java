@@ -4,9 +4,8 @@ import br.com.crud.dao.OutdoorDao;
 
 /**
  * 
- * @author Diogo Classe que representa o aluguel. Contém métodos estáticos
- *         para manipular todos os aluguéis e também métodos locais para
- *         manipular as instâncias.
+ * @author Diogo Classe que representa o aluguel. Contém métodos estáticos para manipular todos os
+ *         aluguéis e também métodos locais para manipular as instâncias.
  */
 
 
@@ -33,7 +32,7 @@ public class AluguelBean extends Bean {
     return observacao;
   }
 
-  
+
   /**
    * @return objeto outdoor associado a esse aluguel
    */
@@ -57,6 +56,7 @@ public class AluguelBean extends Bean {
 
   /**
    * Usado para gravar vários dados de uma vez em uma instância
+   * 
    * @param numDias número de dias de duração do aluguel
    * @param valor valor do aluguel (em R$)
    * @param observacao String de observação do aluguel
@@ -88,6 +88,7 @@ public class AluguelBean extends Bean {
 
   /**
    * Construtor com a opção de colocar todos os parâmetros do aluguel
+   * 
    * @param numDias número de dias de duração do aluguel
    * @param valor valor do aluguel (em R$)
    * @param observacao String de observação do aluguel
@@ -97,10 +98,9 @@ public class AluguelBean extends Bean {
     gravarDados(numDias, valor, observacao, idOutdoor);
   }
 
-  
+
   /**
    * Construtor genérico
    */
-  public AluguelBean() {
-  }
+  public AluguelBean() {}
 }

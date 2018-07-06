@@ -3,7 +3,6 @@ package br.com.crud.view;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowListener;
-
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
@@ -13,14 +12,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import br.com.crud.bean.Bean;
 import br.com.crud.bean.UsuarioBean;
 import br.com.crud.dao.UsuarioDao;
 
 /**
- * @author Diogo
- * Tela de seleção do usuário a ser editado ou deletado.
+ * @author Diogo Tela de seleção do usuário a ser editado ou deletado.
  */
 @SuppressWarnings("serial")
 public class SelecionarUsuario extends JDialog {
@@ -33,6 +30,7 @@ public class SelecionarUsuario extends JDialog {
 
   /**
    * Abre a tela de seleção de usuario
+   * 
    * @return UsuarioBean dos dados editados
    */
   public static UsuarioBean selecionar() {
@@ -90,31 +88,27 @@ public class SelecionarUsuario extends JDialog {
     contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
     setContentPane(contentPane);
     GroupLayout gl_contentPane = new GroupLayout(contentPane);
-    gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-            .addGroup(gl_contentPane.createSequentialGroup()
-                    .addGap(51)
+    gl_contentPane
+        .setHorizontalGroup(
+            gl_contentPane.createParallelGroup(Alignment.LEADING)
+                .addGroup(gl_contentPane.createSequentialGroup().addGap(51)
                     .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                            .addComponent(lblSelecioneOOutdoor)
-                            .addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
-                                    .addComponent(cbsUsuario, Alignment.LEADING, 0,
-                                            GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(Alignment.LEADING,
-                                            gl_contentPane.createSequentialGroup()
-                                                    .addComponent(btnEditar)
-                                                    .addGap(18)
-                                                    .addComponent(btnCancelar))))
+                        .addComponent(lblSelecioneOOutdoor)
+                        .addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
+                            .addComponent(cbsUsuario, Alignment.LEADING, 0,
+                                GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(Alignment.LEADING,
+                                gl_contentPane.createSequentialGroup().addComponent(btnEditar)
+                                    .addGap(18).addComponent(btnCancelar))))
                     .addContainerGap(62, Short.MAX_VALUE)));
     gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-            .addGroup(gl_contentPane.createSequentialGroup()
-                    .addComponent(lblSelecioneOOutdoor)
-                    .addGap(10)
-                    .addComponent(cbsUsuario, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-                            GroupLayout.PREFERRED_SIZE)
-                    .addGap(18)
-                    .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                            .addComponent(btnEditar)
-                            .addComponent(btnCancelar))
-                    .addContainerGap(25, Short.MAX_VALUE)));
+        .addGroup(gl_contentPane.createSequentialGroup().addComponent(lblSelecioneOOutdoor)
+            .addGap(10)
+            .addComponent(cbsUsuario, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+                GroupLayout.PREFERRED_SIZE)
+            .addGap(18).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                .addComponent(btnEditar).addComponent(btnCancelar))
+            .addContainerGap(25, Short.MAX_VALUE)));
     contentPane.setLayout(gl_contentPane);
     telaCarregada = true;
   }

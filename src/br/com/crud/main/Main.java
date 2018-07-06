@@ -5,8 +5,7 @@ import br.com.crud.view.Login;
 import br.com.crud.view.TelaPrincipal;
 
 /**
- * @author Diogo
- * Roda o programa
+ * @author Diogo Roda o programa
  */
 public class Main {
 

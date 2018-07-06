@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -13,14 +12,12 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-
 import br.com.crud.bean.UsuarioBean;
 import br.com.crud.dao.UsuarioDao;
 import net.miginfocom.swing.MigLayout;
 
 /**
- * @author Diogo
- * Tela de login
+ * @author Diogo Tela de login
  */
 @SuppressWarnings("serial")
 public class Login extends JDialog {
@@ -33,8 +30,9 @@ public class Login extends JDialog {
   private static boolean telaCriada = false;
 
   /**
-   * Método para fazer o login.
-   * Retorna o usuário logado se o login foi bem sucedido, se não, retorna null.
+   * Método para fazer o login. Retorna o usuário logado se o login foi bem sucedido, se não,
+   * retorna null.
+   * 
    * @return
    */
   public static UsuarioBean logar() {

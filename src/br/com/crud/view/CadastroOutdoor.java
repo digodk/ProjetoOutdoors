@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowListener;
 import java.util.Arrays;
-
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
@@ -19,14 +18,12 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
-
 import br.com.crud.bean.OutdoorBean;
 import br.com.crud.bean.OutdoorBean.TiposOutdoor;
 import br.com.crud.dao.OutdoorDao;
 
 /**
- * @author Diogo
- * Tela de cadastro e edição de outdoors
+ * @author Diogo Tela de cadastro e edição de outdoors
  */
 @SuppressWarnings("serial")
 public class CadastroOutdoor extends JDialog {
@@ -78,11 +75,12 @@ public class CadastroOutdoor extends JDialog {
       Auxiliares.dispararEventoFecharJanela(frame);
     }
   }
-  
+
   // ---Métodos de cadastro. É possível cadastrar um novo outdoor ou editar um
   // existente
   /**
    * Cadastrar um novo outdoor
+   * 
    * @return o objeto OutdoorBean se o cadastro foi bem sucedido, senão null
    */
   public static OutdoorBean cadastrar() {
@@ -91,6 +89,7 @@ public class CadastroOutdoor extends JDialog {
 
   /**
    * Editar um outdoor existente. A tela é carregada com os valores do outdoor
+   * 
    * @param out o outdoor a ser editado
    * @return o OutdoorBean editado
    */
@@ -162,46 +161,42 @@ public class CadastroOutdoor extends JDialog {
     contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
     setContentPane(contentPane);
     GroupLayout gl_contentPane = new GroupLayout(contentPane);
-    gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-            .addGroup(gl_contentPane.createSequentialGroup()
-                    .addGap(26)
-                    .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                            .addComponent(lblTipoDeOutdoor, GroupLayout.PREFERRED_SIZE, 103,
-                                    GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbxTipoOutdoor, GroupLayout.PREFERRED_SIZE, 103,
-                                    GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblCidade)
-                            .addComponent(txtCidade, GroupLayout.PREFERRED_SIZE, 103,
-                                    GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblEndereo)
-                            .addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
-                                    .addGroup(gl_contentPane.createSequentialGroup()
-                                            .addComponent(btnGravar)
-                                            .addPreferredGap(ComponentPlacement.RELATED,
-                                                    GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(btnCancelar))
-                                    .addComponent(txtEndereco, GroupLayout.PREFERRED_SIZE, 237,
-                                            GroupLayout.PREFERRED_SIZE)))
-                    .addContainerGap(41, Short.MAX_VALUE)));
-    gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-            .addGroup(gl_contentPane.createSequentialGroup()
-                    .addComponent(lblTipoDeOutdoor)
-                    .addGap(13)
-                    .addComponent(cbxTipoOutdoor, GroupLayout.PREFERRED_SIZE,
-                            GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addGap(18)
+    gl_contentPane
+        .setHorizontalGroup(
+            gl_contentPane
+                .createParallelGroup(
+                    Alignment.LEADING)
+                .addGroup(gl_contentPane.createSequentialGroup().addGap(26).addGroup(gl_contentPane
+                    .createParallelGroup(Alignment.LEADING)
+                    .addComponent(lblTipoDeOutdoor, GroupLayout.PREFERRED_SIZE, 103,
+                        GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbxTipoOutdoor, GroupLayout.PREFERRED_SIZE, 103,
+                        GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblCidade)
-                    .addGap(7)
-                    .addComponent(txtCidade, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-                            GroupLayout.PREFERRED_SIZE)
-                    .addGap(13)
+                    .addComponent(
+                        txtCidade, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblEndereo)
-                    .addPreferredGap(ComponentPlacement.RELATED)
+                    .addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
+                        .addGroup(gl_contentPane.createSequentialGroup().addComponent(btnGravar)
+                            .addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE,
+                                Short.MAX_VALUE)
+                            .addComponent(btnCancelar))
+                        .addComponent(txtEndereco, GroupLayout.PREFERRED_SIZE, 237,
+                            GroupLayout.PREFERRED_SIZE)))
+                    .addContainerGap(41, Short.MAX_VALUE)));
+    gl_contentPane
+        .setVerticalGroup(
+            gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(
+                gl_contentPane.createSequentialGroup().addComponent(lblTipoDeOutdoor).addGap(13)
+                    .addComponent(cbxTipoOutdoor, GroupLayout.PREFERRED_SIZE,
+                        GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addGap(18).addComponent(lblCidade).addGap(7)
+                    .addComponent(txtCidade, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+                        GroupLayout.PREFERRED_SIZE)
+                    .addGap(13).addComponent(lblEndereo).addPreferredGap(ComponentPlacement.RELATED)
                     .addComponent(txtEndereco, GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
-                    .addGap(18)
-                    .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                            .addComponent(btnCancelar)
-                            .addComponent(btnGravar))
+                    .addGap(18).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                        .addComponent(btnCancelar).addComponent(btnGravar))
                     .addGap(19)));
     contentPane.setLayout(gl_contentPane);
     telaCarregada = true;

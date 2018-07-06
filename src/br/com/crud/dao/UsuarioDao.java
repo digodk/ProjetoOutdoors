@@ -2,13 +2,11 @@ package br.com.crud.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
 import br.com.crud.bean.UsuarioBean;
 
 /**
- * @author Diogo
- * DAO referente à classe de Usuários
- * Segue o pattern singleton, a instância é acessada pelo método inst()
+ * @author Diogo DAO referente à classe de Usuários Segue o pattern singleton, a instância é
+ *         acessada pelo método inst()
  */
 public class UsuarioDao extends DAO<UsuarioBean> {
 
@@ -21,6 +19,7 @@ public class UsuarioDao extends DAO<UsuarioBean> {
 
   /**
    * Método adicional da classe usuários para retornar um usuário pelo nome
+   * 
    * @param nome nome do usuário
    * @return um Objeto UsuarioBean se o nome está cadastro, senão null
    */

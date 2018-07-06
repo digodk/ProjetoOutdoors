@@ -4,19 +4,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
-
 import br.com.crud.bean.Bean;
 import br.com.crud.connection.Conexao;
 import br.com.crud.view.Auxiliares;
 import br.com.crud.view.DescritorComboBox;
 
 /**
- * @author Diogo
- * Classe para abstrair os métodos em comuns entre todos os DAOs
- * Necessida do parâmetro relativo à qual Bean a classe de DAO se refere
+ * @author Diogo Classe para abstrair os métodos em comuns entre todos os DAOs Necessida do
+ *         parâmetro relativo à qual Bean a classe de DAO se refere
  * @param <T> A classe Bean para a qual esse DAO está sendo criado
  */
 public abstract class DAO<T extends Bean> {
@@ -28,9 +25,10 @@ public abstract class DAO<T extends Bean> {
     con = br.com.crud.connection.ConnectionFactory.obterConexao();
   }
 
-  
+
   /**
    * Cadastra os dados de um bean em uma nova linha do Banco de Dados
+   * 
    * @param bean Objeto a ser armazenado
    */
   public void cadastrar(T bean) {
@@ -58,15 +56,16 @@ public abstract class DAO<T extends Bean> {
   }
 
   /**
-   * Altera os dados de uma linha do BD, de acordo com o ID da instância repassada
-   * Se o objeto bean não tem uma ID associada, o processo resulta em erro
+   * Altera os dados de uma linha do BD, de acordo com o ID da instância repassada Se o objeto bean
+   * não tem uma ID associada, o processo resulta em erro
+   * 
    * @param bean objeto contendo as informações a serem atualizadas
    */
   public void alterar(T bean) {
 
     // SQL
     String query =
-            "UPDATE " + nomeTabela() + " SET " + camposAlteracao() + " WHERE " + campoID() + " = ?";
+        "UPDATE " + nomeTabela() + " SET " + camposAlteracao() + " WHERE " + campoID() + " = ?";
 
     // Tenta realizar o comando
     try {
@@ -85,6 +84,7 @@ public abstract class DAO<T extends Bean> {
 
   /**
    * Exclui uma linha de dados da tabela. Se o id informado não existe, resulta em erro
+   * 
    * @param id o id da linha a ser excluída
    */
   public void excluir(int id) {
@@ -115,8 +115,9 @@ public abstract class DAO<T extends Bean> {
   }
 
   /**
-   * Retorna uma lista de todos os objetos cadastrados em um BD
-   * Caso não hajam dados salvos, retorna uma List vazia
+   * Retorna uma lista de todos os objetos cadastrados em um BD Caso não hajam dados salvos, retorna
+   * uma List vazia
+   * 
    * @return um objeto List com todas as instâncias armazenadas do bean
    */
   public List<T> getLista() {
@@ -140,10 +141,11 @@ public abstract class DAO<T extends Bean> {
     }
   }
 
-  // 
+  //
   /**
-   * Método auxiliar que gera uma combobox populada com a lista de beans existentes.
-   * Essa combobox usa como texto o descritor do Bean.
+   * Método auxiliar que gera uma combobox populada com a lista de beans existentes. Essa combobox
+   * usa como texto o descritor do Bean.
+   * 
    * @return uma JComboBox com todos as instâncias salvas de um objeto
    */
   public JComboBox<Bean> getComboBox() {

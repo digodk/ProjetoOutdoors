@@ -9,8 +9,7 @@ import br.com.crud.dao.OutdoorDao;
 import br.com.crud.dao.UsuarioDao;
 
 /**
- * @author Diogo
- * Classe de validadores de dados para inputs do usuário
+ * @author Diogo Classe de validadores de dados para inputs do usuário
  */
 public class Validador {
   // Métodos que checam se existe no BD o ID informado. Usa o procedimento da

@@ -5,20 +5,21 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- * @author Diogo
- * Classe efetivamente estática que retorna uma conexão para o banco de dados
+ * @author Diogo Classe efetivamente estática que retorna uma conexão para o banco de dados
  */
 public class ConnectionFactory {
 
   // Constantes para acessar o banco de dados
   private static final String urlBD =
-          "jdbc:mysql://bits-please.c6g4ywjszepf.sa-east-1.rds.amazonaws.com:3306/bitsplease";
+      "jdbc:mysql://bits-please.c6g4ywjszepf.sa-east-1.rds.amazonaws.com:3306/bitsplease";
   private static final String user = "digodk";
   private static final String password = "dDK1,A0573551";
 
   /**
    * Método para retornar a conexão com o banco de dados
-   * @return Uma instância da conexão com o banco de dados se ela foi bem sucedida, caso contrário retorna null.
+   * 
+   * @return Uma instância da conexão com o banco de dados se ela foi bem sucedida, caso contrário
+   *         retorna null.
    */
   public static Conexao obterConexao() {
 
@@ -53,10 +54,9 @@ public class ConnectionFactory {
     Connection connection = null;
 
     try {
-      connection = DriverManager.getConnection(
-              "jdbc:mysql://" + "bits-please.c6g4ywjszepf.sa-east-1.rds.amazonaws.com" + ":"
-                      + "3306" + "/" + "bitsplease",
-              user, password);
+      connection = DriverManager
+          .getConnection("jdbc:mysql://" + "bits-please.c6g4ywjszepf.sa-east-1.rds.amazonaws.com"
+              + ":" + "3306" + "/" + "bitsplease", user, password);
     } catch (SQLException e) {
       System.out.println("Connection Failed!:\n" + e.getMessage());
     }

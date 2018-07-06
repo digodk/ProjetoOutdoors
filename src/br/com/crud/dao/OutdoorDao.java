@@ -2,14 +2,12 @@ package br.com.crud.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
 import br.com.crud.bean.OutdoorBean;
 import br.com.crud.bean.OutdoorBean.TiposOutdoor;
 
 /**
- * @author Diogo
- * DAO referente à classe de outdoors
- * Segue o pattern singleton, a instância é acessada pelo método inst()
+ * @author Diogo DAO referente à classe de outdoors Segue o pattern singleton, a instância é
+ *         acessada pelo método inst()
  */
 public class OutdoorDao extends DAO<OutdoorBean> {
 

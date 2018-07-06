@@ -1,18 +1,16 @@
 package br.com.crud.bean;
 
 import java.util.Arrays;
-
 import br.com.crud.view.Auxiliares;
 
 /**
- * @author Diogo Classe que representa o outdoor. Contém métodos estáticos para
- *         manipular todos os aluguéis e também métodos locais para manipular as
- *         instâncias.
+ * @author Diogo Classe que representa o outdoor. Contém métodos estáticos para manipular todos os
+ *         aluguéis e também métodos locais para manipular as instâncias.
  */
 public class OutdoorBean extends Bean {
   /**
-   * @author Diogo Enum para os tipos de outdoor. Contém um valor
-   *         autodescritivo para exibiçãoem menus.
+   * @author Diogo Enum para os tipos de outdoor. Contém um valor autodescritivo para exibiçãoem
+   *         menus.
    */
   public enum TiposOutdoor {
     INDEFINIDO("Indefinido", 0), MADEIRA("Madeira", 1), METAL("Metal", 2), LED("LED", 3);
@@ -24,16 +22,12 @@ public class OutdoorBean extends Bean {
     /**
      * Converte um número para um tipo de outdoor
      * 
-     * @param tipo
-     *          valor numérico que representa o tipo
+     * @param tipo valor numérico que representa o tipo
      * @return valor TiposOutdoor associado ao número
      */
     public static TiposOutdoor converterTipo(int tipo) {
-      return Arrays.asList(TiposOutdoor.values())
-              .stream()
-              .filter(v -> v.toInt() == tipo)
-              .findFirst()
-              .orElse(INDEFINIDO);
+      return Arrays.asList(TiposOutdoor.values()).stream().filter(v -> v.toInt() == tipo)
+          .findFirst().orElse(INDEFINIDO);
     }
 
     public String getNome() {
@@ -78,12 +72,9 @@ public class OutdoorBean extends Bean {
   /**
    * Grava vários valores em um método
    * 
-   * @param endereco
-   *          endereço do outdoor
-   * @param cidade
-   *          cidade do outdoor
-   * @param tipo
-   *          tipo de outdoors
+   * @param endereco endereço do outdoor
+   * @param cidade cidade do outdoor
+   * @param tipo tipo de outdoors
    */
   public void gravarDados(String endereco, String cidade, TiposOutdoor tipo) {
     setEndereco(endereco);
@@ -110,12 +101,9 @@ public class OutdoorBean extends Bean {
   /**
    * Construtor com configuração de valores
    * 
-   * @param endereco
-   *          endereço do outdoor
-   * @param cidade
-   *          cidade do outdoor
-   * @param tipo
-   *          tipo de outdoors
+   * @param endereco endereço do outdoor
+   * @param cidade cidade do outdoor
+   * @param tipo tipo de outdoors
    */
   public OutdoorBean(String endereco, String cidade, TiposOutdoor tipo) {
     gravarDados(endereco, cidade, tipo);

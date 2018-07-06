@@ -5,14 +5,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
- * @author Diogo
- *  Funções auxiliares para as telas e comportamento do programa
+ * @author Diogo Funções auxiliares para as telas e comportamento do programa
  */
 public class Auxiliares {
   public static String safeLeftSubstring(String s, int numChars) {
@@ -25,6 +23,7 @@ public class Auxiliares {
 
   /**
    * Função auxiliar para gerar um modelo de combo box com base em um array de valores
+   * 
    * @param valores array de valores de uma classe E
    * @return Um ComboBoxModel da classe E com base no array
    */
@@ -34,6 +33,7 @@ public class Auxiliares {
 
   /**
    * Método para informar o fechamento da janela
+   * 
    * @param source a janela a ser fechada
    */
   public static void dispararEventoFecharJanela(Window source) {
@@ -42,6 +42,7 @@ public class Auxiliares {
 
   /**
    * Retorna um listener para botões que fecham janelas
+   * 
    * @param source a janela a ser fechada pelo botão
    * @return um ActionListener que dispara a ação de fechar a janela
    */
@@ -58,6 +59,7 @@ public class Auxiliares {
 
   /**
    * Método para obter um listener que oculta a janela quando necessário
+   * 
    * @param source a janela que vai ser fechada
    * @return um WindowAdapter que recebe a ação de windowClosing do source
    */
