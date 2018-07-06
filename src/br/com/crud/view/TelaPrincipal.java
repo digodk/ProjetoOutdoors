@@ -2,7 +2,6 @@ package br.com.crud.view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
@@ -11,10 +10,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
-
 import br.com.crud.bean.UsuarioBean;
 import br.com.crud.bean.UsuarioBean.NiveisUsuarios;
 
+/**
+ * @author Diogo Tela principal para seleção de ações do usuário
+ */
 @SuppressWarnings("serial")
 public class TelaPrincipal extends JDialog {
 
@@ -23,6 +24,11 @@ public class TelaPrincipal extends JDialog {
   private static JPanel panelAdmin;
   private static boolean telaCarregada = false;
 
+  /**
+   * Carrega o menu de opções. O nível de acesso do usuário determina os recursos a serem carregados
+   * 
+   * @param usuario o usuario logado no sistema
+   */
   public static void exibir(UsuarioBean usuario) {
     if (!telaCarregada) {
       try {
@@ -36,7 +42,7 @@ public class TelaPrincipal extends JDialog {
     frame.setVisible(true);
   }
 
-  public TelaPrincipal() {
+  private TelaPrincipal() {
     setTitle("Cadastro de Outdoors e Aluguéis");
     setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
     setBounds(100, 100, 349, 302);
@@ -123,70 +129,53 @@ public class TelaPrincipal extends JDialog {
     panelAdmin.setVisible(false);
     GroupLayout gl_contentPane = new GroupLayout(contentPane);
     gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+        .addGroup(gl_contentPane.createSequentialGroup().addContainerGap().addGroup(gl_contentPane
+            .createParallelGroup(Alignment.LEADING)
             .addGroup(gl_contentPane.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                            .addGroup(gl_contentPane.createSequentialGroup()
-                                    .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                            .addComponent(panelAdmin, 0, 0, Short.MAX_VALUE)
-                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                    .addComponent(btnCadastrarOutdoor)
-                                                    .addGap(18)
-                                                    .addComponent(btnEditarOutdoor,
-                                                            GroupLayout.PREFERRED_SIZE, 139,
-                                                            GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                    .addComponent(btnCadastrarAluguel,
-                                                            GroupLayout.PREFERRED_SIZE, 139,
-                                                            GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(18)
-                                                    .addComponent(btnEditarAluguel,
-                                                            GroupLayout.PREFERRED_SIZE, 139,
-                                                            GroupLayout.PREFERRED_SIZE)))
-                                    .addContainerGap(13, Short.MAX_VALUE))
-                            .addGroup(Alignment.TRAILING,
-                                    gl_contentPane.createSequentialGroup()
-                                            .addComponent(btnTrocarUsurio)
-                                            .addPreferredGap(ComponentPlacement.RELATED, 145,
-                                                    Short.MAX_VALUE)
-                                            .addComponent(btnSair)
-                                            .addContainerGap()))));
-    gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-            .addGroup(gl_contentPane.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                            .addComponent(btnCadastrarOutdoor)
-                            .addComponent(btnEditarOutdoor))
-                    .addGap(18)
-                    .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                            .addComponent(btnCadastrarAluguel)
-                            .addComponent(btnEditarAluguel))
-                    .addGap(18)
-                    .addComponent(panelAdmin, GroupLayout.PREFERRED_SIZE, 97,
+                .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                    .addComponent(panelAdmin, 0, 0, Short.MAX_VALUE)
+                    .addGroup(gl_contentPane.createSequentialGroup()
+                        .addComponent(btnCadastrarOutdoor).addGap(18).addComponent(btnEditarOutdoor,
+                            GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE))
+                    .addGroup(gl_contentPane.createSequentialGroup()
+                        .addComponent(btnCadastrarAluguel, GroupLayout.PREFERRED_SIZE, 139,
                             GroupLayout.PREFERRED_SIZE)
+                        .addGap(18).addComponent(btnEditarAluguel, GroupLayout.PREFERRED_SIZE, 139,
+                            GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(13, Short.MAX_VALUE))
+            .addGroup(Alignment.TRAILING,
+                gl_contentPane.createSequentialGroup().addComponent(btnTrocarUsurio)
+                    .addPreferredGap(ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
+                    .addComponent(btnSair).addContainerGap()))));
+    gl_contentPane
+        .setVerticalGroup(
+            gl_contentPane.createParallelGroup(Alignment.LEADING)
+                .addGroup(gl_contentPane.createSequentialGroup().addContainerGap()
+                    .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                        .addComponent(btnCadastrarOutdoor).addComponent(btnEditarOutdoor))
+                    .addGap(18)
+                    .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                        .addComponent(btnCadastrarAluguel).addComponent(btnEditarAluguel))
+                    .addGap(18)
+                    .addComponent(
+                        panelAdmin, GroupLayout.PREFERRED_SIZE, 97, GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(ComponentPlacement.UNRELATED)
                     .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                            .addComponent(btnSair)
-                            .addComponent(btnTrocarUsurio))
+                        .addComponent(btnSair).addComponent(btnTrocarUsurio))
                     .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 
     GroupLayout gl_panelAdmin = new GroupLayout(panelAdmin);
-    gl_panelAdmin
-            .setHorizontalGroup(gl_panelAdmin.createParallelGroup(Alignment.LEADING)
-                    .addGroup(Alignment.TRAILING, gl_panelAdmin.createSequentialGroup()
-                            .addContainerGap(69, Short.MAX_VALUE)
-                            .addGroup(gl_panelAdmin.createParallelGroup(Alignment.LEADING)
-                                    .addComponent(btnCadastrarNovoUsurio)
-                                    .addComponent(btnEditarUsuario, GroupLayout.PREFERRED_SIZE, 167,
-                                            GroupLayout.PREFERRED_SIZE))
-                            .addGap(60)));
+    gl_panelAdmin.setHorizontalGroup(
+        gl_panelAdmin.createParallelGroup(Alignment.LEADING).addGroup(Alignment.TRAILING,
+            gl_panelAdmin.createSequentialGroup().addContainerGap(69, Short.MAX_VALUE)
+                .addGroup(gl_panelAdmin.createParallelGroup(Alignment.LEADING)
+                    .addComponent(btnCadastrarNovoUsurio).addComponent(btnEditarUsuario,
+                        GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE))
+                .addGap(60)));
     gl_panelAdmin.setVerticalGroup(gl_panelAdmin.createParallelGroup(Alignment.LEADING)
-            .addGroup(gl_panelAdmin.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(btnCadastrarNovoUsurio)
-                    .addGap(18)
-                    .addComponent(btnEditarUsuario)
-                    .addContainerGap(29, Short.MAX_VALUE)));
+        .addGroup(gl_panelAdmin.createSequentialGroup().addContainerGap()
+            .addComponent(btnCadastrarNovoUsurio).addGap(18).addComponent(btnEditarUsuario)
+            .addContainerGap(29, Short.MAX_VALUE)));
     panelAdmin.setLayout(gl_panelAdmin);
     contentPane.setLayout(gl_contentPane);
   }

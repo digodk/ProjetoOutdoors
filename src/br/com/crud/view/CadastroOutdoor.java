@@ -24,6 +24,10 @@ import br.com.crud.bean.OutdoorBean;
 import br.com.crud.bean.OutdoorBean.TiposOutdoor;
 import br.com.crud.dao.OutdoorDao;
 
+/**
+ * @author Diogo
+ * Tela de cadastro e edição de outdoors
+ */
 @SuppressWarnings("serial")
 public class CadastroOutdoor extends JDialog {
 
@@ -74,13 +78,22 @@ public class CadastroOutdoor extends JDialog {
       Auxiliares.dispararEventoFecharJanela(frame);
     }
   }
-
+  
+  // ---Métodos de cadastro. É possível cadastrar um novo outdoor ou editar um
+  // existente
+  /**
+   * Cadastrar um novo outdoor
+   * @return o objeto OutdoorBean se o cadastro foi bem sucedido, senão null
+   */
   public static OutdoorBean cadastrar() {
     return cadastrar(new OutdoorBean());
   }
 
-  // ---Métodos de cadastro. É possível cadastrar um novo outdoor ou editar um
-  // existente
+  /**
+   * Editar um outdoor existente. A tela é carregada com os valores do outdoor
+   * @param out o outdoor a ser editado
+   * @return o OutdoorBean editado
+   */
   public static OutdoorBean cadastrar(OutdoorBean out) {
     if (!telaCarregada) {
       try {

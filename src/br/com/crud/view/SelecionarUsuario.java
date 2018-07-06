@@ -18,6 +18,10 @@ import br.com.crud.bean.Bean;
 import br.com.crud.bean.UsuarioBean;
 import br.com.crud.dao.UsuarioDao;
 
+/**
+ * @author Diogo
+ * Tela de seleção do usuário a ser editado ou deletado.
+ */
 @SuppressWarnings("serial")
 public class SelecionarUsuario extends JDialog {
 
@@ -27,6 +31,10 @@ public class SelecionarUsuario extends JDialog {
   private static JPanel contentPane;
   private static boolean telaCarregada = false;
 
+  /**
+   * Abre a tela de seleção de usuario
+   * @return UsuarioBean dos dados editados
+   */
   public static UsuarioBean selecionar() {
     if (!telaCarregada) {
       try {

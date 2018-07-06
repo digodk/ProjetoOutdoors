@@ -18,6 +18,10 @@ import br.com.crud.bean.AluguelBean;
 import br.com.crud.bean.Bean;
 import br.com.crud.dao.AluguelDao;
 
+/**
+ * @author Diogo
+ * Tela de seleção do aluguel a ser editado ou deletado.
+ */
 @SuppressWarnings("serial")
 public class SelecionarAluguel extends JDialog {
 
@@ -28,7 +32,8 @@ public class SelecionarAluguel extends JDialog {
   private static boolean telaCarregada;
 
   /**
-   * Launch the application.
+   * Abre a tela de seleção de aluguel
+   * @return AluguelBean dos dados editados
    */
   public static AluguelBean selecionar() {
     if (!telaCarregada) {
@@ -52,7 +57,7 @@ public class SelecionarAluguel extends JDialog {
     Auxiliares.dispararEventoFecharJanela(frame);
   }
 
-  public SelecionarAluguel() {
+  private SelecionarAluguel() {
 
     // ---Configuração de listeners
     ActionListener acaoOK = SelecionarAluguel::editarDados;

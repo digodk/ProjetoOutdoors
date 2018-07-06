@@ -18,6 +18,11 @@ import br.com.crud.bean.Bean;
 import br.com.crud.bean.OutdoorBean;
 import br.com.crud.dao.OutdoorDao;
 
+
+/**
+ * @author Diogo
+ * Tela de seleção do outdoor a ser editado ou deletado.
+ */
 @SuppressWarnings("serial")
 public class SelecionarOutdoor extends JDialog {
 
@@ -27,6 +32,10 @@ public class SelecionarOutdoor extends JDialog {
   private static JPanel contentPane;
   private static boolean telaCarregada = false;
 
+  /**
+   * Abre a tela de seleção de outdoor
+   * @return OutdoorBean dos dados editados
+   */
   public static OutdoorBean selecionar() {
     if (!telaCarregada) {
       try {

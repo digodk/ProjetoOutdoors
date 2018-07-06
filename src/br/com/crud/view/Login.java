@@ -18,6 +18,10 @@ import br.com.crud.bean.UsuarioBean;
 import br.com.crud.dao.UsuarioDao;
 import net.miginfocom.swing.MigLayout;
 
+/**
+ * @author Diogo
+ * Tela de login
+ */
 @SuppressWarnings("serial")
 public class Login extends JDialog {
 
@@ -28,6 +32,11 @@ public class Login extends JDialog {
   private static UsuarioBean usuarioLogado = null;
   private static boolean telaCriada = false;
 
+  /**
+   * Método para fazer o login.
+   * Retorna o usuário logado se o login foi bem sucedido, se não, retorna null.
+   * @return
+   */
   public static UsuarioBean logar() {
     usuarioLogado = null;
     try {

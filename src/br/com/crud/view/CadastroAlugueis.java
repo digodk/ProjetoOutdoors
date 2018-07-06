@@ -27,6 +27,10 @@ import br.com.crud.bean.OutdoorBean;
 import br.com.crud.dao.AluguelDao;
 import br.com.crud.dao.OutdoorDao;
 
+/**
+ * @author Diogo
+ * Tela de cadastro e edição de alugueis
+ */
 @SuppressWarnings("serial")
 public class CadastroAlugueis extends JDialog {
 
@@ -90,10 +94,19 @@ public class CadastroAlugueis extends JDialog {
 
   // ---Métodos de cadastro. É possível cadastrar um novo aluguel ou editar um
   // existente
+  /**
+   * Cadastrar um novo aluguel
+   * @return o objeto AluguelBean se o cadastro foi bem sucedido, senão null
+   */
   public static AluguelBean cadastrar() {
     return cadastrar(new AluguelBean());
   }
 
+  /**
+   * Editar um aluguel existente. A tela é carregada com os valores do aluguel
+   * @param alu o aluguel a ser editado
+   * @return o AluguelBean editado
+   */
   public static AluguelBean cadastrar(AluguelBean alu) {
     if (!telaCarregada) {
       try {

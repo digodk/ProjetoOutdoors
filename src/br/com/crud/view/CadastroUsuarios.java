@@ -20,6 +20,10 @@ import br.com.crud.bean.UsuarioBean;
 import br.com.crud.bean.UsuarioBean.NiveisUsuarios;
 import br.com.crud.dao.UsuarioDao;
 
+/**
+ * @author Diogo
+ * Tela de cadastro e edição de usuários
+ */
 @SuppressWarnings("serial")
 public class CadastroUsuarios extends JFrame {
 
@@ -93,10 +97,20 @@ public class CadastroUsuarios extends JFrame {
 
   // ---Métodos de cadastro. É possível cadastrar um novo usuário ou editar um
   // existente
+  
+  /**
+   * Cadastrar um novo usuario
+   * @return o objeto UsuarioBean se o cadastro foi bem sucedido, senão null
+   */
   public static UsuarioBean cadastrar() {
     return cadastrar(new UsuarioBean());
   }
 
+  /**
+   * Editar um usuario existente. A tela é carregada com os valores do usuario
+   * @param out o usuario a ser editado
+   * @return o UsuarioBean editado
+   */
   public static UsuarioBean cadastrar(UsuarioBean usuario) {
     usuarioEmCadastro = usuario;
     if (!telaCarregada) {
