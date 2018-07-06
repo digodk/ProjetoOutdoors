@@ -8,6 +8,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import br.com.crud.bean.Bean;
 
 /**
  * @author Diogo Funções auxiliares para as telas e comportamento do programa
@@ -25,9 +26,10 @@ public class Auxiliares {
    * Função auxiliar para gerar um modelo de combo box com base em um array de valores
    * 
    * @param valores array de valores de uma classe E
+   * @param E o Bean de dados a ser inserido na combo box
    * @return Um ComboBoxModel da classe E com base no array
    */
-  public static <E> ComboBoxModel<E> listaComboBox(E[] valores) {
+  public static <E extends Bean> ComboBoxModel<E> listaComboBox(E[] valores) {
     return new DefaultComboBoxModel<E>(valores);
   }
 
