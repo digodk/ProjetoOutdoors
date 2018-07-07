@@ -12,9 +12,9 @@ import br.com.crud.view.Auxiliares;
 import br.com.crud.view.DescritorComboBox;
 
 /**
- * @author Diogo Classe para abstrair os métodos em comuns entre todos os DAOs Necessida do
+ * @author Diogo Classe para abstrair os métodos em comum entre todos os DAOs. Necessita do
  *         parâmetro relativo à qual Bean a classe de DAO se refere
- * @param <T> A classe Bean para a qual esse DAO está sendo criado
+ * @param <T> A classe Bean para a qual o DAO está sendo criado
  */
 public abstract class DAO<T extends Bean> {
   // A variável de conexão com o BD é estática e compartilhada entre todas as classes
